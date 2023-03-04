@@ -4,8 +4,7 @@
     ref="richTextToolbar"
     :style="style"
     @click.stop.passive
-    v-show="showRichTextToolbar"
-  >
+    v-show="showRichTextToolbar">
     <el-tooltip content="加粗" placement="top">
       <div class="btn" :class="{ active: formatInfo.bold }" @click="toggleBold">
         <span class="icon iconfont iconzitijiacu"></span>
@@ -99,12 +98,46 @@
         </div>
       </el-popover>
     </el-tooltip>
-    
+
     <el-tooltip content="清除样式" placement="top">
-      <div
-        class="btn" @click="removeFormat"
-      >
+      <div class="btn" @click="removeFormat">
         <span class="icon iconfont iconqingchu"></span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo1" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo1">
+        <span>UniverDemo1</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo2" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo2">
+        <span>UniverDemo2</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo3" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo3">
+        <span>UniverDemo3</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo4" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo4">
+        <span>UniverDemo4</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo5" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo5">
+        <span>UniverDemo5</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="UniverDemo6" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo6">
+        <span>UniverDemo6</span>
       </div>
     </el-tooltip>
   </div>
@@ -113,6 +146,16 @@
 <script>
 import { fontFamilyList, fontSizeList } from '@/config'
 import Color from './Color'
+import {ComponentFactory} from "simple-mind-map";
+
+ComponentFactory.register.set('div', function () {
+  const div = document.createElement('div');
+  div.style.width = '100px';
+  div.style.height = '100px';
+  div.style.background ='red';
+  div.innerHTML = 'asdfasdf'
+  return div;
+})
 
 export default {
   name: 'RichTextToolbar',
@@ -161,13 +204,6 @@ export default {
       this.showRichTextToolbar = hasRange
     },
 
-    toggleBold() {
-      this.formatInfo.bold = !this.formatInfo.bold
-      this.mindMap.richText.formatText({
-        bold: this.formatInfo.bold
-      })
-    },
-
     toggleItalic() {
       this.formatInfo.italic = !this.formatInfo.italic
       this.mindMap.richText.formatText({
@@ -189,17 +225,54 @@ export default {
       })
     },
 
-    changeFontFamily(font) {
-      this.formatInfo.font = font
+    toggleBold() {
+      this.formatInfo.bold = !this.formatInfo.bold
       this.mindMap.richText.formatText({
-        font
-      })
+        bold: this.formatInfo.bold
+      });
     },
 
     changeFontSize(size) {
       this.formatInfo.size = size
       this.mindMap.richText.formatText({
         size: size + 'px'
+      })
+    },
+
+    univerDemo1() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('div');
+    },
+
+    univerDemo2() {
+      alert(0)
+    },
+
+    univerDemo3() {
+      alert(0)
+    },
+
+    univerDemo4() {
+      alert(0)
+    },
+
+    univerDemo5() {
+      alert(0)
+    },
+
+    univerDemo6() {
+      alert(0)
+    },
+
+    removeFormat() {
+      this.mindMap.richText.removeFormat()
+    },
+
+    changeFontFamily(font) {
+      this.formatInfo.font = font
+      this.mindMap.richText.formatText({
+        font
       })
     },
 
@@ -216,15 +289,16 @@ export default {
         background
       })
     },
-
-    removeFormat() {
-      this.mindMap.richText.removeFormat()
-    }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.univerTooltip {
+  width: auto !important;
+  padding: 10px;
+}
+
 .richTextToolbar {
   position: fixed;
   z-index: 99999;

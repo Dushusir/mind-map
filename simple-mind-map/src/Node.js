@@ -4,6 +4,7 @@ import { resizeImgSize, asyncRun, measureText } from './utils'
 import { Image, SVG, Circle, A, G, Rect, Text, ForeignObject } from '@svgdotjs/svg.js'
 import btnsSvg from './svg/btns'
 import iconsSvg from './svg/icons'
+import {ComponentFactory} from "./ComponentFactory";
 
 //  节点类
 
@@ -173,6 +174,7 @@ class Node {
     this._hyperlinkData = this.createHyperlinkNode()
     this._tagData = this.createTagNode()
     this._noteData = this.createNoteNode()
+    this._componentData = this.createComponentNode()
     this.createGeneralizationNode()
   }
 
@@ -202,7 +204,7 @@ class Node {
 
   removeAllNode() {
     // 节点内的内容
-    ;[
+    [
       this._imgData,
       this._iconData,
       this._textData,
@@ -567,6 +569,33 @@ class Node {
     }
   }
 
+  // 创建容器节点
+  createComponentNode() {
+    let componentKey = this.nodeData.data.componentKey
+    if (!componentKey) {
+      return null;
+    }
+    let component = ComponentFactory.build(componentKey);
+    let g = new G()
+    this.mindMap.el.appendChild(component)
+    let { width, height } = component.getBoundingClientRect()
+    width = Math.ceil(width)
+    height = Math.ceil(height)
+    g.attr('data-width', width)
+    g.attr('data-height', height)
+    this.mindMap.el.removeChild(component)
+    let foreignObject = new ForeignObject()
+    foreignObject.width(width)
+    foreignObject.height(height)
+    foreignObject.add(component, false)
+    g.add(foreignObject)
+    return {
+      node: g,
+      width,
+      height
+    }
+  }
+
   //  获取节点形状
 
   getShape() {
@@ -655,6 +684,10 @@ class Node {
         .y((this._rectInfo.textContentHeight - this._noteData.height) / 2)
       textContentNested.add(this._noteData.node)
       textContentOffsetX += this._noteData.width
+    }
+    // 容器
+    if (this._componentData) {
+      this.group.add(this._componentData.node);
     }
     // 文字内容整体
     textContentNested.translate(
@@ -1255,6 +1288,10 @@ class Node {
 
   setShape(shape) {
     this.mindMap.execCommand('SET_NODE_SHAPE', this, shape)
+  }
+
+  setComponent(key) {
+    this.mindMap.execCommand('SET_COMPONENT', this, key);
   }
 }
 

@@ -147,6 +147,19 @@ class RichText {
     this.formatText(style)
   }
 
+  // 关闭文本编辑控件
+  cancelEditText() {
+    this.mindMap.emit(
+        'hide_text_edit',
+        this.textEditNode,
+        this.mindMap.renderer.activeNodeList
+    )
+    this.textEditNode.style.display = 'none'
+    this.showTextEdit = false
+    this.mindMap.emit('rich_text_selection_change', false)
+    this.node = null
+  }
+
   // 隐藏文本编辑控件，即完成编辑
   hideEditText() {
     if (!this.showTextEdit) {

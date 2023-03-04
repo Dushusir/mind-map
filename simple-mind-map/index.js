@@ -11,6 +11,7 @@ import { layoutValueList } from './src/utils/constant'
 import { SVG } from '@svgdotjs/svg.js'
 import { simpleDeepClone } from './src/utils'
 import defaultTheme from './src/themes/default'
+import {ComponentFactory} from "./src/ComponentFactory";
 
 // 默认选项配置
 const defaultOpt = {
@@ -427,3 +428,7 @@ MindMap.defineTheme = (name, config = {}) => {
 }
 
 export default MindMap
+
+export {
+  ComponentFactory
+};

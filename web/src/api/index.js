@@ -48,7 +48,7 @@ export const getData = () => {
  */
 export const storeData = data => {
   try {
-    let originData = getData()
+    let originData = getData();
     originData.root = copyMindMapTreeData({}, data)
     Vue.prototype.$bus.$emit('write_local_file', originData)
     let dataStr = JSON.stringify(originData)

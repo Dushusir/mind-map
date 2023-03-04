@@ -172,6 +172,9 @@ class Render {
     // 设置节点形状
     this.setNodeShape = this.setNodeShape.bind(this)
     this.mindMap.command.add('SET_NODE_SHAPE', this.setNodeShape)
+    // 添加容器节点
+    this.setComponent = this.setComponent.bind(this)
+    this.mindMap.command.add('SET_COMPONENT', this.setComponent)
   }
 
   //  注册快捷键
@@ -680,7 +683,7 @@ class Render {
     this.setNodeDataRender(node, data)
     // 更新了连线的样式
     if (lineStyleProps.includes(prop)) {
-      ;(node.parent || node).renderLine(true)
+      (node.parent || node).renderLine(true)
     }
   }
 
@@ -825,6 +828,13 @@ class Render {
     })
   }
 
+  // 设置容器节点
+  setComponent(node, key) {
+    this.setComponentDataRender(node, {
+      componentKey: key
+    })
+  }
+
   //  设置节点超链接
 
   setNodeHyperlink(node, link, title = '') {
@@ -946,6 +956,25 @@ class Render {
 
   setNodeDataRender(node, data) {
     this.setNodeData(node, data)
+    let changed = node.getSize()
+    node.renderNode()
+    if (changed) {
+      if (node.isGeneralization) {
+        // 概要节点
+        node.generalizationBelongNode.updateGeneralization()
+      }
+      this.mindMap.render()
+    }
+  }
+
+  setComponentData(node, data) {
+    Object.keys(data).forEach(key => {
+      node.nodeData.data[key] = data[key]
+    })
+  }
+
+  setComponentDataRender(node, componentKey) {
+    this.setComponentData(node, componentKey);
     let changed = node.getSize()
     node.renderNode()
     if (changed) {
