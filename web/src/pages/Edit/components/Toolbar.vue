@@ -136,11 +136,10 @@
           <span class="icon iconfont iconexport"></span>
           <span class="text">{{ $t('toolbar.export') }}</span>
         </div>
-        <div class="toolbarBtn" @click="$bus.$emit('openUniver','DEMO1')">
-          <span class="icon iconfont iconlingcunwei"></span>
-          <span class="text">Univer</span>
-        </div>
+        
       </div>
+
+      <SheetViewer content="doc"></SheetViewer>
     </div>
     <NodeImage></NodeImage>
     <NodeHyperlink></NodeHyperlink>
@@ -148,7 +147,6 @@
     <NodeNote></NodeNote>
     <NodeTag></NodeTag>
     <Export></Export>
-    <SheetViewer></SheetViewer>
     <Import></Import>
   </div>
 </template>

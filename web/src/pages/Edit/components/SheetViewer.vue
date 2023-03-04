@@ -1,11 +1,15 @@
 <template>
   <div class="sheet-viewer">
-    <el-button type="text" @click="dialogVisible = true"
-      >点击打开 Dialog</el-button
-    >
+
+    <div class="mini-sheet">
+        <div id="univer-demo" class='univer-demo' ref="miniSheetContainer"></div>
+         <el-button type="text" @click.stop="openUniver" class="full-btn el-icon-full-screen"
+      ></el-button>
+    </div>
+   
     <el-dialog
-      title="提示"
-      :visible.sync="dialogVisible"
+      title="Univer"
+      :visible="dialogVisible"
       width="80%"
       top="2%"
       :before-close="handleClose"
@@ -13,9 +17,9 @@
       <div id="univer-demo" class='univer-demo' ref="sheetContainer">
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button @click="dialogVisible = false">{{$t('toolbar.cancel')}}</el-button>
         <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
+          >{{$t('toolbar.confirm')}}</el-button
         >
       </span>
     </el-dialog>
@@ -27,6 +31,9 @@ import {makeid} from '@/utils'
 export default {
   name: 'SheetViewer',
   props: {
+    content:String,
+    width:Number,
+    height:Number,
   },
   data() {
     return {
@@ -34,59 +41,67 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('openUniver', content => {
-      console.log(content)
-      this.dialogVisible = true;
-      setTimeout(() => {
-          this.init(content)
-      }, 300);
+    
+  },
+  mounted(){
+    const content = this.content || "DEMO2"
+    const width = this.width || 300;
+    const height = this.height || 150;
+
+    this.$refs.miniSheetContainer.style.width = width + 'px'
+    this.$refs.miniSheetContainer.style.height = height + 'px'
+    this.init(content,{
+        toolBar:false,
+        refs:this.$refs.miniSheetContainer
     })
+
   },
   methods: {
     handleClose(done) {
       this.$confirm('确认关闭？')
         .then(_ => {
-          done()
+          this.dialogVisible = false;
         })
         .catch(_ => {})
     },
 
-    init(content){
+    openUniver(){
+        const content = this.content || "DEMO2"
+        this.dialogVisible = true;
+        setTimeout(() => {
+            this.init(content,{
+                toolBar:true,
+                refs:this.$refs.sheetContainer
+            })
+        }, 300);
+    },
+
+    init(content,setting){
         switch (content) {
         case 'sheet':
-          this.initSheet()
+          this.initSheet(setting)
           break;
         case 'doc':
-          this.initDoc()
+          this.initDoc(setting)
           break;
         case 'slide':
-          this.initSlide()
+          this.initSlide(setting)
           break;
         case 'DEMO1':
         case 'DEMO2':
         case 'DEMO3':
         case 'DEMO4':
-          this.initSheetByDemo(content)
+          this.initSheetByDemo(content,setting)
           break;
 
         default:
           break;
       }
     },
-    initSheet(tableHTML) {
+    initSheet(setting) {
+        const {toolBar,refs} = setting
       let cellData = {}
-      if (tableHTML) {
-        const { BaseComponent } = UniverPreactTs
-        const { handelTableToJson } = BaseComponent
-        const array = handelTableToJson(tableHTML)
-
-        array.forEach((row, i) => {
-          cellData[i] = {}
-          row.forEach((column, j) => {
-            cellData[i][j] = column
-          })
-        })
-      } else {
+      
         cellData = {
           0: {
             0: {
@@ -95,17 +110,17 @@ export default {
             }
           }
         }
-      }
+      
 
       const { univerSheetCustom, CommonPluginData } = UniverPreactTs
       const { DEFAULT_WORKBOOK_DATA } = CommonPluginData
       const sheetConfig = {
-        container: this.$refs.sheetContainer,
+        container: refs,
         layout: {
           sheetContainerConfig: {
             infoBar: false,
             formulaBar: false,
-            toolBar: true,
+            toolBar,
             sheetBar: false,
             countBar: false,
             rightMenu: false
@@ -156,7 +171,8 @@ export default {
         baseSheetsConfig: sheetConfig
       })
     },
-    initSheetByDemo(demo) {
+    initSheetByDemo(demo,setting) {
+        const {toolBar,refs} = setting
       const { univerSheetCustom, CommonPluginData, UniverCore } = UniverPreactTs
       const {
         DEFAULT_WORKBOOK_DATA_DEMO1,
@@ -172,12 +188,12 @@ export default {
         DEMO4: DEFAULT_WORKBOOK_DATA_DEMO4
       }
       const sheetConfig = {
-        container: this.$refs.sheetContainer,
+        container: refs,
         layout: {
           sheetContainerConfig: {
             infoBar: false,
             formulaBar: false,
-            toolBar: true,
+            toolBar,
             sheetBar: false,
             countBar: false,
             rightMenu: false
@@ -210,7 +226,8 @@ export default {
         baseSheetsConfig: sheetConfig
       })
     },
-    initDoc() {
+    initDoc(setting) {
+        const {toolBar,refs} = setting
       const { univerDocCustom, UniverCore, CommonPluginData } = UniverPreactTs
 
       const { DEFAULT_DOCUMENT_DATA_EN } = CommonPluginData
@@ -219,12 +236,12 @@ export default {
       coreConfig.id = makeid(6)
 
       const docConfig = {
-        container: this.$refs.sheetContainer,
+        container: refs,
         layout: {
           innerRight: false,
           outerLeft: false,
           infoBar: false,
-          toolBar: true
+          toolBar
         }
       }
       univerDocCustom({
@@ -232,7 +249,8 @@ export default {
         baseDocsConfig: docConfig
       })
     },
-    initSlide() {
+    initSlide(setting) {
+        const {toolBar,refs} = setting
       const { univerSlideCustom, UniverCore, CommonPluginData } = UniverPreactTs
       const { DEFAULT_SLIDE_DATA } = CommonPluginData
 
@@ -240,13 +258,13 @@ export default {
       coreConfig.id = makeid(6)
 
       const slideConfig = {
-        container: this.$refs.sheetContainer,
+        container: refs,
         layout: {
           innerLeft: false,
           innerRight: false,
           outerLeft: false,
           infoBar: false,
-          toolBar: true
+          toolBar
         }
       }
       univerSlideCustom({
@@ -255,11 +273,22 @@ export default {
       })
     }
   }
+
 }
 </script>
 
 <style lang="less" scoped>
 .sheet-viewer {
+    .mini-sheet{
+        background: red;
+        position: relative;
+
+        .full-btn{
+            position: absolute;
+            right:4px;
+            top:1px;
+        }
+    }
     .univer-demo{
     width: 100%;
     height: 70vh;

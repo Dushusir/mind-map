@@ -184,7 +184,9 @@ export default {
     saveAs: '另存为',
     import: '导入',
     export: '导出',
-    shortcutKey: '快捷键'
+    shortcutKey: '快捷键',
+    confirm:"确定",
+    cancel:"取消",
   },
   edit: {
     newFeatureNoticeTitle: '新特性提醒',
