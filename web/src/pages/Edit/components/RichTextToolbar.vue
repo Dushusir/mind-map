@@ -147,13 +147,27 @@
 import { fontFamilyList, fontSizeList } from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
+import {makeid,initUniver} from '@/utils'
 
-ComponentFactory.register.set('dome1', function () {
+ComponentFactory.register.set('demo1', function () {
   const div = document.createElement('div');
-  div.style.width = '100px';
-  div.style.height = '100px';
+  div.id = "univer-demo";
+  const univerid = makeid(6)
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
   div.style.background ='red';
-  div.innerHTML = 'asdfasdf'
+  div.innerHTML = '111';
+
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+  
+  initUniver("DEMO1",{
+        toolBar:false,
+        refs: container
+    })
+  }, 300);
   return div;
 })
 
@@ -242,7 +256,7 @@ export default {
     univerDemo1() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('dome1');
+      activeNode.setComponent('demo1');
     },
 
     univerDemo2() {
@@ -289,6 +303,7 @@ export default {
         background
       })
     },
+
   }
 }
 </script>
