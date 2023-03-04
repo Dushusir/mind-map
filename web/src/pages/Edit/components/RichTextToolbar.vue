@@ -148,7 +148,7 @@ import { fontFamilyList, fontSizeList } from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
 
-ComponentFactory.register.set('div', function () {
+ComponentFactory.register.set('dome1', function () {
   const div = document.createElement('div');
   div.style.width = '100px';
   div.style.height = '100px';
@@ -242,7 +242,7 @@ export default {
     univerDemo1() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('div');
+      activeNode.setComponent('dome1');
     },
 
     univerDemo2() {
