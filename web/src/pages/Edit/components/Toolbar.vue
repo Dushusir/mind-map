@@ -136,7 +136,10 @@
           <span class="icon iconfont iconexport"></span>
           <span class="text">{{ $t('toolbar.export') }}</span>
         </div>
+        
       </div>
+
+      <SheetViewer content="doc"></SheetViewer>
     </div>
     <NodeImage></NodeImage>
     <NodeHyperlink></NodeHyperlink>
@@ -155,6 +158,7 @@ import NodeIcon from './NodeIcon'
 import NodeNote from './NodeNote'
 import NodeTag from './NodeTag'
 import Export from './Export'
+import SheetViewer from './SheetViewer'
 import Import from './Import'
 import { mapState } from 'vuex'
 import { Notification } from 'element-ui'
@@ -176,6 +180,7 @@ export default {
     NodeNote,
     NodeTag,
     Export,
+    SheetViewer,
     Import
   },
   data() {

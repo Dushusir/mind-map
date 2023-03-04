@@ -184,7 +184,9 @@ export default {
     saveAs: 'Save as',
     import: 'Import',
     export: 'Export',
-    shortcutKey: 'Shortcut key'
+    shortcutKey: 'Shortcut key',
+    confirm:"Confirm",
+    cancel:"Cancel",
   },
   edit: {
     newFeatureNoticeTitle: 'New feature reminder',
