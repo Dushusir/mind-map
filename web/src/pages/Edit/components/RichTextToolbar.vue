@@ -176,6 +176,9 @@ ComponentFactory.register.set('demo1', function (id) {
     container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
+    container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
     initUniver(demo, {
       toolBar: false,
       refs: container
@@ -208,6 +211,9 @@ ComponentFactory.register.set('demo2', function (id) {
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
     container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
     initUniver(demo, {
@@ -243,6 +249,9 @@ ComponentFactory.register.set('demo3', function (id) {
     container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
+    container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
     initUniver(demo, {
       toolBar: false,
       refs: container
@@ -274,6 +283,9 @@ ComponentFactory.register.set('demo4', function (id) {
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
     container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
     initUniver(demo, {
@@ -309,6 +321,9 @@ ComponentFactory.register.set('demo5', function (id) {
     container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
+    container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
     initUniver(demo, {
       toolBar: false,
       refs: container
@@ -342,6 +357,9 @@ ComponentFactory.register.set('demo6', function (id) {
     container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
+    container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
     initUniver(demo, {
       toolBar: false,
       refs: container
@@ -373,6 +391,9 @@ ComponentFactory.register.set('demo7', function (id) {
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
     container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
     initUniver(demo, {
