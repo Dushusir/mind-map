@@ -158,14 +158,23 @@ ComponentFactory.register.set('demo1', function () {
   div.style.width = '300px';
   div.style.height = '150px';
   div.style.background ='red';
+  
   div.innerHTML = '111';
+
+  let demo = "DEMO1"
 
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
   
-  initUniver("DEMO1",{
+  initUniver(demo,{
         toolBar:false,
         refs: container
+    })
+
+    container.insertAdjacentHTML('afterbegin','<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click',()=>{
+      Vue.prototype.$bus.$emit('openUniver',demo)
     })
   }, 300);
   return div;

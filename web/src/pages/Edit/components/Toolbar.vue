@@ -139,7 +139,7 @@
         
       </div>
 
-      <SheetViewer content="doc"></SheetViewer>
+      <SheetViewer></SheetViewer>
     </div>
     <NodeImage></NodeImage>
     <NodeHyperlink></NodeHyperlink>
