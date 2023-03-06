@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue()
 Vue.use(ElementUI)
 Vue.use(VueViewer)
-
+window.Vue = Vue
 new Vue({
   render: h => h(App),
   router,
