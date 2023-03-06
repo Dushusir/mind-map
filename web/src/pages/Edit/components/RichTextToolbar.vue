@@ -105,48 +105,47 @@
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo1" placement="top">
+    <el-tooltip content="sheet1" placement="top">
       <div class="btn univerTooltip" @click="univerDemo1">
-        <span>UniverDemo1</span>
+        <span>sheet1</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo2" placement="top">
+    <el-tooltip content="sheet2" placement="top">
       <div class="btn univerTooltip" @click="univerDemo2">
-        <span>UniverDemo2</span>
+        <span>sheet2</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo3" placement="top">
+    <el-tooltip content="sheet3" placement="top">
       <div class="btn univerTooltip" @click="univerDemo3">
-        <span>UniverDemo3</span>
+        <span>sheet3</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo4" placement="top">
+    <el-tooltip content="sheet4" placement="top">
       <div class="btn univerTooltip" @click="univerDemo4">
-        <span>UniverDemo4</span>
+        <span>sheet4</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo5" placement="top">
+    <el-tooltip content="sheet5" placement="top">
       <div class="btn univerTooltip" @click="univerDemo5">
-        <span>UniverDemo5</span>
+        <span>sheet5</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo6" placement="top">
+    <el-tooltip content="doc" placement="top">
       <div class="btn univerTooltip" @click="univerDemo6">
-        <span>UniverDemo6</span>
+        <span>doc</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="UniverDemo7" placement="top">
+    <el-tooltip content="slide" placement="top">
       <div class="btn univerTooltip" @click="univerDemo7">
-        <span>univerDemo7</span>
+        <span>slide</span>
       </div>
     </el-tooltip>
-    
   </div>
 </template>
 
@@ -168,8 +167,8 @@ ComponentFactory.register.set('demo1', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "DEMO1"
   setTimeout(() => {
@@ -205,8 +204,8 @@ ComponentFactory.register.set('demo2', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "DEMO2"
   setTimeout(() => {
@@ -241,8 +240,8 @@ ComponentFactory.register.set('demo3', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "DEMO3"
   setTimeout(() => {
@@ -277,8 +276,8 @@ ComponentFactory.register.set('demo4', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "DEMO4"
   setTimeout(() => {
@@ -313,8 +312,8 @@ ComponentFactory.register.set('demo5', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "sheet"
   setTimeout(() => {
@@ -349,8 +348,8 @@ ComponentFactory.register.set('demo6', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "doc"
   setTimeout(() => {
@@ -385,8 +384,8 @@ ComponentFactory.register.set('demo7', function (id) {
   div.id = "univer-demo";
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
-  div.style.width = '300px';
-  div.style.height = '150px';
+  div.style.width = '400px';
+  div.style.height = '300px';
 
   let demo = "slide"
   setTimeout(() => {
