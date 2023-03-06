@@ -157,7 +157,7 @@ ComponentFactory.register.set('demo1', function () {
   div.classList.add("univer-demo");
   div.style.width = '300px';
   div.style.height = '150px';
-  div.style.background ='red';
+  // div.style.background ='red';
   
   div.innerHTML = '111';
 
@@ -165,6 +165,13 @@ ComponentFactory.register.set('demo1', function () {
 
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
+
+    container.addEventListener('click',(e)=>{
+      e.stopImmediatePropagation()
+    })
+    container.addEventListener('wheel', (e) => {
+        e.stopImmediatePropagation()
+    });
   
   initUniver(demo,{
         toolBar:false,
