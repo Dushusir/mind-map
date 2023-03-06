@@ -637,19 +637,20 @@ class Node {
     this.style[shape === 'rectangle' ? 'rect' : 'shape'](
       this.shapeInstance.createShape()
     )
+    // 组件
+    let componentHeight = 0
+    let componentYSpace = 5;
+    if (this._componentData) {
+      componentHeight = this._componentData.height
+      this.group.add(this._componentData.node);
+      this._componentData.node.cx(width / 2).y(paddingY)
+    }
     // 图片节点
     let imgHeight = 0
     if (this._imgData) {
       imgHeight = this._imgData.height
       this.group.add(this._imgData.node)
-      this._imgData.node.cx(width / 2).y(paddingY)
-    }
-    // 组件
-    let componentHeight = 0
-    if (this._componentData) {
-      componentHeight = this._componentData.height
-      this.group.add(this._componentData.node);
-      this._componentData.node.cx(width / 2).y(paddingY)
+      this._imgData.node.cx(width / 2).y(paddingY + componentYSpace + componentHeight)
     }
     // 内容节点
     let textContentNested = new G()
