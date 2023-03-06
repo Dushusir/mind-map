@@ -63,6 +63,7 @@ export default class Shape {
     let node = null
     // 矩形
     if (shape === 'rectangle') {
+        console.log(width, height, this.node)
       node = this.node.group.rect(width, height)
     } else if (shape === 'diamond') {
       // 菱形

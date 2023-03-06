@@ -984,6 +984,7 @@ class Render {
       }
       this.mindMap.render()
     }
+    this.mindMap.render();
   }
 
   //  移动节点到画布中心
