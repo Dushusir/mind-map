@@ -158,14 +158,14 @@ ComponentFactory.register.set('demo1', function () {
   div.style.width = '300px';
   div.style.height = '150px';
   div.style.background ='red';
-  
+
   div.innerHTML = '111';
 
   let demo = "DEMO1"
 
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-  
+
   initUniver(demo,{
         toolBar:false,
         refs: container
