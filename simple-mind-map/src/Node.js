@@ -256,6 +256,8 @@ class Node {
     let imgContentHeight = 0
     let textContentWidth = 0
     let textContentHeight = 0
+    let comContentWidth = 0
+    let comContentHeight = 0
     // 存在图片
     if (this._imgData) {
       this._rectInfo.imgContentWidth = imgContentWidth = this._imgData.width
@@ -293,18 +295,23 @@ class Node {
       textContentWidth += this._noteData.width
       textContentHeight = Math.max(textContentHeight, this._noteData.height)
     }
+    // 组件
+    if (this._componentData) {
+      this._rectInfo.comContentWidth = comContentWidth = this._componentData.width
+      this._rectInfo.comContentHeight = comContentHeight = this._componentData.height
+    }
     // 文字内容部分的尺寸
     this._rectInfo.textContentWidth = textContentWidth
     this._rectInfo.textContentHeight = textContentHeight
     // 间距
     let margin =
-      imgContentHeight > 0 && textContentHeight > 0
+      imgContentHeight > 0 && textContentHeight > 0 && comContentHeight
         ? this.blockContentMargin
         : 0
     let { paddingX, paddingY } = this.getPaddingVale()
     // 纯内容宽高
-    let _width = Math.max(imgContentWidth, textContentWidth)
-    let _height = imgContentHeight + textContentHeight
+    let _width = Math.max(imgContentWidth, textContentWidth, comContentWidth)
+    let _height = imgContentHeight + textContentHeight + comContentHeight;
     // 计算节点形状需要的附加内边距
     let { paddingX: shapePaddingX, paddingY: shapePaddingY } =
       this.shapeInstance.getShapePadding(_width, _height, paddingX, paddingY)
@@ -631,6 +638,13 @@ class Node {
       this.group.add(this._imgData.node)
       this._imgData.node.cx(width / 2).y(paddingY)
     }
+    // 组件
+    let componentHeight = 0
+    if (this._componentData) {
+      componentHeight = this._componentData.height
+      this.group.add(this._componentData.node);
+      this._componentData.node.cx(width / 2).y(paddingY)
+    }
     // 内容节点
     let textContentNested = new G()
     let textContentOffsetX = 0
@@ -685,16 +699,12 @@ class Node {
       textContentNested.add(this._noteData.node)
       textContentOffsetX += this._noteData.width
     }
-    // 容器
-    if (this._componentData) {
-      this.group.add(this._componentData.node);
-    }
     // 文字内容整体
     textContentNested.translate(
       width / 2 - textContentNested.bbox().width / 2,
-      imgHeight +
+        (imgHeight + componentHeight) +
         paddingY +
-        (imgHeight > 0 && this._rectInfo.textContentHeight > 0
+        ((imgHeight + componentHeight) > 0 && this._rectInfo.textContentHeight > 0
           ? this.blockContentMargin
           : 0)
     )
