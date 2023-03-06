@@ -579,11 +579,14 @@ class Node {
   // 创建容器节点
   createComponentNode() {
     let componentKey = this.nodeData.data.componentKey
+    let componentId = this.nodeData.data.componentId
     if (!componentKey) {
       return null;
     }
-    let component = ComponentFactory.build(componentKey);
+    let component = ComponentFactory.build(componentKey, componentId);
     let g = new G()
+    component.style.position = 'fixed';
+    component.style.left = '-9999999px';
     this.mindMap.el.appendChild(component)
     let { width, height } = component.getBoundingClientRect()
     width = Math.ceil(width)
@@ -591,6 +594,8 @@ class Node {
     g.attr('data-width', width)
     g.attr('data-height', height)
     this.mindMap.el.removeChild(component)
+    component.style.position = 'static';
+    component.style.left = '0px';
     let foreignObject = new ForeignObject()
     foreignObject.width(width)
     foreignObject.height(height)

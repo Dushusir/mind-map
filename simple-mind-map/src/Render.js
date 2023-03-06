@@ -7,6 +7,7 @@ import TextEdit from './TextEdit'
 import { copyNodeTree, simpleDeepClone, walk } from './utils'
 import { shapeList } from './Shape'
 import { lineStyleProps } from './themes/default'
+import {ComponentFactory} from "./ComponentFactory";
 
 // 布局列表
 const layouts = {
@@ -831,8 +832,9 @@ class Render {
   // 设置容器节点
   setComponent(node, key) {
     this.setComponentDataRender(node, {
-      componentKey: key
-    })
+      componentKey: key,
+      componentId: ComponentFactory.id ++
+    });
   }
 
   //  设置节点超链接
