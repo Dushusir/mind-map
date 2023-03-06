@@ -146,6 +146,7 @@
         <span>univerDemo7</span>
       </div>
     </el-tooltip>
+    
   </div>
 </template>
 
@@ -173,7 +174,7 @@ ComponentFactory.register.set('demo1', function (id) {
   let demo = "DEMO1"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -210,7 +211,7 @@ ComponentFactory.register.set('demo2', function (id) {
   let demo = "DEMO2"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -246,7 +247,7 @@ ComponentFactory.register.set('demo3', function (id) {
   let demo = "DEMO3"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -282,7 +283,7 @@ ComponentFactory.register.set('demo4', function (id) {
   let demo = "DEMO4"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -318,7 +319,7 @@ ComponentFactory.register.set('demo5', function (id) {
   let demo = "sheet"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -354,7 +355,7 @@ ComponentFactory.register.set('demo6', function (id) {
   let demo = "doc"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
@@ -390,7 +391,7 @@ ComponentFactory.register.set('demo7', function (id) {
   let demo = "slide"
   setTimeout(() => {
     const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    container.addEventListener('wheel', (e) => {
+    container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
     container.addEventListener('click', (e) => {
