@@ -583,6 +583,7 @@ class Node {
     if (!componentKey) {
       return null;
     }
+    ComponentFactory.id = Math.max(ComponentFactory.id, componentId);
     let component = ComponentFactory.build(componentKey, componentId);
     let g = new G()
     component.style.position = 'fixed';

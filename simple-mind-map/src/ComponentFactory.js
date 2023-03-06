@@ -7,5 +7,5 @@ export class ComponentFactory {
     }
 }
 
-ComponentFactory.id = 1;
+ComponentFactory.id = 0;
 ComponentFactory.register = new Map();

@@ -833,7 +833,7 @@ class Render {
   setComponent(node, key) {
     this.setComponentDataRender(node, {
       componentKey: key,
-      componentId: ComponentFactory.id ++
+      componentId: ++ ComponentFactory.id
     });
   }
 

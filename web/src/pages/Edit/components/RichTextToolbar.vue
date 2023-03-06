@@ -140,6 +140,12 @@
         <span>UniverDemo6</span>
       </div>
     </el-tooltip>
+
+    <el-tooltip content="UniverDemo7" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo7">
+        <span>univerDemo7</span>
+      </div>
+    </el-tooltip>
   </div>
 </template>
 
@@ -150,6 +156,7 @@ import {ComponentFactory} from "simple-mind-map";
 import {makeid, initUniver} from '@/utils'
 const cache = {};
 ComponentFactory.register.set('demo1', function (id) {
+  console.log(id)
   if (cache[id]) {
     return cache[id];
   }
@@ -181,7 +188,206 @@ ComponentFactory.register.set('demo1', function (id) {
     })
   }, 300);
   return cache[id] = div;
-})
+});
+ComponentFactory.register.set('demo2', function (id) {
+  console.log(id)
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "DEMO2"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo3', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "DEMO3"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo4', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "DEMO4"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo5', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "sheet"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo6', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "doc"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo7', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '300px';
+  div.style.height = '150px';
+
+  let demo = "slide"
+  setTimeout(() => {
+    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniver(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 300);
+  return cache[id] = div;
+});
 export default {
   name: 'RichTextToolbar',
   components: {
@@ -271,23 +477,39 @@ export default {
     },
 
     univerDemo2() {
-      alert(0)
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo2');
     },
 
     univerDemo3() {
-      alert(0)
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo3');
     },
 
     univerDemo4() {
-      alert(0)
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo4');
     },
 
     univerDemo5() {
-      alert(0)
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo5');
     },
 
     univerDemo6() {
-      alert(0)
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo6');
+    },
+
+    univerDemo7() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo7');
     },
 
     removeFormat() {
