@@ -7,12 +7,13 @@
       ></el-button>
     </div> -->
    
-    <div
+    <el-dialog
       title="Univer"
-      class="univer-dialog-container"
-      :style="{display: dialogVisible ? 'block' : 'none' }"
+      :visible="dialogVisible"
+      width="80%"
+      top="2%"
+      :before-close="handleClose"
     >
-    <div class="univer-dialog">
       <div id="univer-demo" class='univer-demo' ref="sheetContainer">
       </div>
       <span slot="footer" class="dialog-footer">
@@ -21,9 +22,7 @@
           >{{$t('toolbar.confirm')}}</el-button
         >
       </span>
-    </div>
-      
-    </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -105,30 +104,6 @@ export default {
             right:4px;
             top:1px;
         }
-    }
-    .univer-dialog-container{
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-
-      .univer-dialog{
-        position: absolute;
-        top:5%;
-        left:5%;
-        width:90%;
-        height: 90%;
-        background: white;
-
-        .dialog-footer{
-              height: 100px;
-              display: block;
-              text-align: center;
-              margin: 50px;
-        }
-      }
     }
     .univer-demo{
     width: 100%;
