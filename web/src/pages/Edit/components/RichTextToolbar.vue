@@ -172,7 +172,8 @@ ComponentFactory.register.set('demo1', function (id) {
 
   let demo = "DEMO1"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -196,7 +197,7 @@ ComponentFactory.register.set('demo1', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
@@ -222,7 +223,8 @@ ComponentFactory.register.set('demo2', function (id) {
 
   let demo = "DEMO2"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -271,7 +273,8 @@ ComponentFactory.register.set('demo3', function (id) {
 
   let demo = "DEMO3"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -320,7 +323,8 @@ ComponentFactory.register.set('demo4', function (id) {
 
   let demo = "DEMO4"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -369,7 +373,8 @@ ComponentFactory.register.set('demo5', function (id) {
 
   let demo = "sheet"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });

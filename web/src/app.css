@@ -6,6 +6,13 @@
     top: 0;
     right: 0;
     z-index: 2;
+    background: var(--gray-5);
+    padding: 4px;
+    border-radius: 4px;
+}
+.btn-fullscreen:hover{
+    background: var(--gray-4);
+    cursor: pointer;
 }
 
 .univer-content-inner-right-container > div{

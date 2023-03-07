@@ -311,9 +311,9 @@ const baseSheetsConfig = {
       {
         selection: {
           startRow: 0,
-          endRow: 0,
+          endRow: 1,
           startColumn: 0,
-          endColumn: 0
+          endColumn: 1
         },
         cell: {
           row: 0,
@@ -386,14 +386,14 @@ const baseSheetsConfig = {
     'sheet-01': [
       {
         selection: {
-          startRow: 0,
-          endRow: 0,
-          startColumn: 0,
-          endColumn: 0
+          startRow: 11,
+          endRow: 11,
+          startColumn: 1,
+          endColumn:1
         },
         cell: {
-          row: 0,
-          column: 0
+          row: 11,
+          column: 1
         }
       }
     ]

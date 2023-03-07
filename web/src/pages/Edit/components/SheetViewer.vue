@@ -120,17 +120,17 @@ export default {
 
       .univer-dialog{
         position: absolute;
-        top:5%;
+        top:10%;
         left:5%;
         width:90%;
-        height: 90%;
+        height: 80%;
         background: white;
 
         .dialog-footer{
               height: 100px;
               display: block;
-              text-align: center;
-              margin: 50px;
+              text-align: right;
+              margin: 30px;
         }
       }
     }
