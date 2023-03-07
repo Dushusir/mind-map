@@ -257,3 +257,156 @@ univerSlideCustom({
   baseSlidesConfig: slideConfig
 })
 }
+
+export function initUniverNew(content,setting) {
+  switch (content) {
+    case 'sheet':
+      initSheetNew(setting)
+      break;
+    case 'DEMO1':
+    case 'DEMO2':
+    case 'DEMO3':
+    case 'DEMO4':
+      initSheetByDemoNew(content,setting)
+      break;
+  
+    default:
+      break;
+  }
+}
+
+export function initSheetNew(setting) {
+  const {toolbar,refs} = setting
+let cellData = {}
+
+  cellData = {
+    0: {
+      0: {
+        m: '',
+        v: ''
+      }
+    }
+  }
+
+
+const { univerSheetCustom, CommonPluginData } = UniverPreactTs
+const { DEFAULT_WORKBOOK_DATA } = CommonPluginData
+const uiSheetsConfig = {
+  container: refs,
+  layout: {
+    sheetContainerConfig: {
+      infoBar: false,
+      formulaBar: false,
+      toolbar,
+      sheetBar: false,
+      countBar: false,
+      rightMenu: false
+    }
+  },
+}
+
+const baseSheetsConfig = {
+  selections: {
+    'sheet-01': [
+      {
+        selection: {
+          startRow: 0,
+          endRow: 0,
+          startColumn: 0,
+          endColumn: 0
+        },
+        cell: {
+          row: 0,
+          column: 0
+        }
+      }
+    ]
+  }
+}
+
+let columnCount = 13
+if (window.innerWidth < 1366) {
+  columnCount = 7
+}
+const config = {
+  id: makeid(6),
+  styles: null,
+  namedRanges: null,
+  sheetOrder: [],
+  sheets: {
+    'sheet-01': {
+      type: 0,
+      id: 'sheet-01',
+      name: 'sheet1',
+      columnCount,
+      status: 1,
+      cellData
+    }
+  }
+}
+const coreConfig = Object.assign({}, DEFAULT_WORKBOOK_DATA, config)
+
+univerSheetCustom({
+  coreConfig,
+  uiSheetsConfig,
+  baseSheetsConfig
+})
+}
+export function initSheetByDemoNew(demo,setting) {
+  const {toolbar,refs} = setting
+const { univerSheetCustom, CommonPluginData, UniverCore } = UniverPreactTs
+const {
+  DEFAULT_WORKBOOK_DATA_DEMO1,
+  DEFAULT_WORKBOOK_DATA_DEMO2,
+  DEFAULT_WORKBOOK_DATA_DEMO3,
+  DEFAULT_WORKBOOK_DATA_DEMO4
+} = CommonPluginData
+
+const demoInfo = {
+  DEMO1: DEFAULT_WORKBOOK_DATA_DEMO1,
+  DEMO2: DEFAULT_WORKBOOK_DATA_DEMO2,
+  DEMO3: DEFAULT_WORKBOOK_DATA_DEMO3,
+  DEMO4: DEFAULT_WORKBOOK_DATA_DEMO4
+}
+const uiSheetsConfig = {
+  container: refs,
+  layout: {
+    sheetContainerConfig: {
+      infoBar: false,
+      formulaBar: false,
+      toolbar,
+      sheetBar: false,
+      countBar: false,
+      rightMenu: false
+    }
+  }
+}
+const baseSheetsConfig = {
+  selections: {
+    'sheet-01': [
+      {
+        selection: {
+          startRow: 0,
+          endRow: 0,
+          startColumn: 0,
+          endColumn: 0
+        },
+        cell: {
+          row: 0,
+          column: 0
+        }
+      }
+    ]
+  }
+}
+
+const coreConfig = UniverCore.Tools.deepClone(demoInfo[demo])
+
+coreConfig.id = makeid(6)
+coreConfig.sheetOrder = []
+univerSheetCustom({
+  coreConfig,
+  uiSheetsConfig,
+  baseSheetsConfig
+})
+}

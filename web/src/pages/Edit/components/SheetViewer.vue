@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {makeid,initUniver} from '@/utils'
+import {makeid,initUniver,initUniverNew} from '@/utils'
 export default {
   name: 'SheetViewer',
   props: {
@@ -46,10 +46,14 @@ export default {
       this.dialogVisible = true
       content = content || "DEMO1"
       setTimeout(() => {
-          initUniver(content,{
-                toolBar:true,
+          initUniverNew(content,{
+                toolbar:true,
                 refs:this.$refs.sheetContainer
             })
+          // initUniver(content,{
+          //       toolBar:true,
+          //       refs:this.$refs.sheetContainer
+          //   })
       }, 300);
     })
   },
@@ -133,6 +137,7 @@ export default {
     .univer-demo{
     width: 100%;
     height: 70vh;
+    
     }
     
 }

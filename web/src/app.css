@@ -1,0 +1,13 @@
+.univer-dev-operation{
+      display: none;
+}
+.btn-fullscreen{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.univer-content-inner-right-container > div{
+    display: block;
+}

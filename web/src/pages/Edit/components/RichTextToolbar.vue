@@ -135,7 +135,7 @@
       </div>
     </el-tooltip>
 
-    <el-tooltip content="doc" placement="top">
+    <!-- <el-tooltip content="doc" placement="top">
       <div class="btn univerTooltip" @click="univerDemo6">
         <span>doc</span>
       </div>
@@ -145,7 +145,7 @@
       <div class="btn univerTooltip" @click="univerDemo7">
         <span>slide</span>
       </div>
-    </el-tooltip>
+    </el-tooltip> -->
   </div>
 </template>
 
@@ -153,7 +153,7 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniver} from '@/utils'
+import {makeid, initUniver,initUniverNew} from '@/utils'
 const cache = {};
 ComponentFactory.register.set('demo1', function (id) {
   console.log(id)
@@ -179,10 +179,14 @@ ComponentFactory.register.set('demo1', function (id) {
     container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
-      toolBar: false,
+    initUniverNew(demo, {
+      toolbar: false,
       refs: container
     })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
     container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
@@ -216,10 +220,14 @@ ComponentFactory.register.set('demo2', function (id) {
     container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
-      toolBar: false,
+    initUniverNew(demo, {
+      toolbar: false,
       refs: container
     })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
     container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
@@ -252,10 +260,14 @@ ComponentFactory.register.set('demo3', function (id) {
     container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
-      toolBar: false,
+    initUniverNew(demo, {
+      toolbar: false,
       refs: container
     })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
     container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
@@ -288,10 +300,14 @@ ComponentFactory.register.set('demo4', function (id) {
     container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
-      toolBar: false,
+    initUniverNew(demo, {
+      toolbar: false,
       refs: container
     })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
     container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
@@ -324,10 +340,14 @@ ComponentFactory.register.set('demo5', function (id) {
     container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
-      toolBar: false,
+    initUniverNew(demo, {
+      toolbar: false,
       refs: container
     })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
     container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
