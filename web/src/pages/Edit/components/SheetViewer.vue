@@ -6,14 +6,14 @@
          <el-button type="text" @click.stop="openUniver" class="full-btn el-icon-full-screen"
       ></el-button>
     </div> -->
-   
+
     <div
       title="Univer"
       class="univer-dialog-container"
       :style="{display: dialogVisible ? 'block' : 'none' }"
     >
     <div class="univer-dialog">
-      <div id="univer-demo" class='univer-demo' ref="sheetContainer">
+      <div id="univer-demo" class='univer-demo' ref="sheetContainer" :key="key">
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">{{$t('toolbar.cancel')}}</el-button>
@@ -22,7 +22,7 @@
         >
       </span>
     </div>
-      
+
     </div>
   </div>
 </template>
@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      key: '',
       dialogVisible: false
     }
   },
@@ -45,6 +46,8 @@ export default {
     this.$bus.$on('openUniver', (content) => {
       this.dialogVisible = true
       content = content || "DEMO1"
+      console.log(content)
+      this.key = content;
       setTimeout(() => {
           initUniverNew(content,{
                 toolbar:true,
@@ -54,7 +57,7 @@ export default {
           //       toolBar:true,
           //       refs:this.$refs.sheetContainer
           //   })
-      }, 300);
+      }, 100);
     })
   },
   mounted(){
@@ -137,9 +140,9 @@ export default {
     .univer-demo{
     width: 100%;
     height: 70vh;
-    
+
     }
-    
+
 }
 
 

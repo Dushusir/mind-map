@@ -203,7 +203,7 @@ ComponentFactory.register.set('demo1', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo2', function (id) {
@@ -248,13 +248,13 @@ ComponentFactory.register.set('demo2', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo3', function (id) {
@@ -298,13 +298,13 @@ ComponentFactory.register.set('demo3', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo4', function (id) {
@@ -348,13 +348,13 @@ ComponentFactory.register.set('demo4', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo5', function (id) {
@@ -398,13 +398,13 @@ ComponentFactory.register.set('demo5', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo6', function (id) {
@@ -443,13 +443,13 @@ ComponentFactory.register.set('demo6', function (id) {
       toolBar: false,
       refs: container
     })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo7', function (id) {
@@ -488,13 +488,13 @@ ComponentFactory.register.set('demo7', function (id) {
       toolBar: false,
       refs: container
     })
-    container.insertAdjacentHTML('afterbegin', '<button class="btn-fullscreen">Fullscreen</button>');
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo)
     })
-  }, 300);
+  }, 800);
   return cache[id] = div;
 });
 export default {

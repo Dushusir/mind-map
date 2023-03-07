@@ -269,7 +269,7 @@ export function initUniverNew(content,setting) {
     case 'DEMO4':
       initSheetByDemoNew(content,setting)
       break;
-  
+
     default:
       break;
   }
