@@ -105,33 +105,33 @@
       </div>
     </el-tooltip>
 
-    <el-tooltip content="sheet1" placement="top">
+    <el-tooltip content="订单" placement="top">
       <div class="btn univerTooltip" @click="univerDemo1">
-        <span>sheet1</span>
+        <span>订单</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="sheet2" placement="top">
+    <el-tooltip content="日历" placement="top">
       <div class="btn univerTooltip" @click="univerDemo2">
-        <span>sheet2</span>
+        <span>日历</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="sheet3" placement="top">
+    <el-tooltip content="甘特图" placement="top">
       <div class="btn univerTooltip" @click="univerDemo3">
-        <span>sheet3</span>
+        <span>甘特图</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="sheet4" placement="top">
+    <el-tooltip content="单据" placement="top">
       <div class="btn univerTooltip" @click="univerDemo4">
-        <span>sheet4</span>
+        <span>单据</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="sheet5" placement="top">
+    <el-tooltip content="表格" placement="top">
       <div class="btn univerTooltip" @click="univerDemo5">
-        <span>sheet5</span>
+        <span>表格</span>
       </div>
     </el-tooltip>
 
