@@ -135,17 +135,17 @@
       </div>
     </el-tooltip>
 
-    <!-- <el-tooltip content="doc" placement="top">
+    <el-tooltip content="文档" placement="top">
       <div class="btn univerTooltip" @click="univerDemo6">
-        <span>doc</span>
+        <span>文档</span>
       </div>
     </el-tooltip>
 
-    <el-tooltip content="slide" placement="top">
+    <el-tooltip content="演示文稿" placement="top">
       <div class="btn univerTooltip" @click="univerDemo7">
-        <span>slide</span>
+        <span>演示文稿</span>
       </div>
-    </el-tooltip> -->
+    </el-tooltip>
   </div>
 </template>
 
@@ -423,7 +423,7 @@ ComponentFactory.register.set('demo6', function (id) {
 
   let demo = "doc"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+     const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -439,7 +439,7 @@ ComponentFactory.register.set('demo6', function (id) {
     container && container.addEventListener('mousemove', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
+    initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
@@ -468,7 +468,7 @@ ComponentFactory.register.set('demo7', function (id) {
 
   let demo = "slide"
   setTimeout(() => {
-    const container = document.querySelector(`[data-univerid="${univerid}"]`);
+     const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
     });
@@ -484,7 +484,7 @@ ComponentFactory.register.set('demo7', function (id) {
     container && container.addEventListener('mousemove', (e) => {
       e.stopImmediatePropagation()
     });
-    initUniver(demo, {
+    initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
@@ -652,7 +652,7 @@ export default {
 
 <style lang="less" scoped>
 .univerTooltip {
-  width: auto !important;
+  width: max-content !important;
   padding: 10px;
 }
 

@@ -263,6 +263,12 @@ export function initUniverNew(content,setting) {
     case 'sheet':
       initSheetNew(setting)
       break;
+    case 'doc':
+      initDocNew(setting)
+      break;
+    case 'slide':
+      initSlideNew(setting)
+    break;
     case 'DEMO1':
     case 'DEMO2':
     case 'DEMO3':
@@ -408,5 +414,55 @@ univerSheetCustom({
   coreConfig,
   uiSheetsConfig,
   baseSheetsConfig
+})
+}
+export function initDocNew(setting) {
+  const {toolbar,refs} = setting
+const { univerDocCustom, UniverCore, CommonPluginData } = UniverPreactTs
+
+const { DEFAULT_DOCUMENT_DATA_EN } = CommonPluginData
+
+const coreConfig = UniverCore.Tools.deepClone(DEFAULT_DOCUMENT_DATA_EN)
+coreConfig.id = makeid(6)
+
+const uiDocsConfig = {
+  container: refs,
+  layout: {
+    docContainerConfig: {
+      innerRight: false,
+      outerLeft: false,
+      infoBar: false,
+      toolbar
+    }
+  },
+}
+univerDocCustom({
+  coreConfig,
+  uiDocsConfig
+})
+}
+export function initSlideNew(setting) {
+  const {toolbar,refs} = setting
+const { univerSlideCustom, UniverCore, CommonPluginData } = UniverPreactTs
+const { DEFAULT_SLIDE_DATA } = CommonPluginData
+
+const coreConfig = UniverCore.Tools.deepClone(DEFAULT_SLIDE_DATA)
+coreConfig.id = makeid(6)
+
+const uiSlidesConfig = {
+  container: refs,
+  layout: {
+    slideContainerConfig: {
+      innerLeft: false,
+      innerRight: false,
+      outerLeft: false,
+      infoBar: false,
+      toolbar
+    }
+  },
+}
+univerSlideCustom({
+  coreConfig,
+  uiSlidesConfig
 })
 }
