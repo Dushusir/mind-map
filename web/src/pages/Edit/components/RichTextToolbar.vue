@@ -105,6 +105,16 @@
       </div>
     </el-tooltip>
 
+    <el-tooltip content="工作" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo9">
+        <span>工作</span>
+      </div>
+    </el-tooltip>
+    <el-tooltip content="计划" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo8">
+        <span>计划</span>
+      </div>
+    </el-tooltip>
     <el-tooltip content="订单" placement="top">
       <div class="btn univerTooltip" @click="univerDemo1">
         <span>订单</span>
@@ -168,7 +178,7 @@ ComponentFactory.register.set('demo1', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "DEMO1"
   setTimeout(() => {
@@ -219,7 +229,7 @@ ComponentFactory.register.set('demo2', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "DEMO2"
   setTimeout(() => {
@@ -269,7 +279,7 @@ ComponentFactory.register.set('demo3', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "DEMO3"
   setTimeout(() => {
@@ -319,7 +329,7 @@ ComponentFactory.register.set('demo4', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "DEMO4"
   setTimeout(() => {
@@ -369,7 +379,7 @@ ComponentFactory.register.set('demo5', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "sheet"
   setTimeout(() => {
@@ -419,7 +429,7 @@ ComponentFactory.register.set('demo6', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "doc"
   setTimeout(() => {
@@ -464,9 +474,99 @@ ComponentFactory.register.set('demo7', function (id) {
   div.setAttribute("data-univerid", univerid)
   div.classList.add("univer-demo");
   div.style.width = '400px';
-  div.style.height = '300px';
+  div.style.height = '225px';
 
   let demo = "slide"
+  setTimeout(() => {
+     const container = div;
+    container && container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('drag', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('mousedown', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('mousemove', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 800);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo8', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "DEMO5"
+  setTimeout(() => {
+     const container = div;
+    container && container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('drag', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('mousedown', (e) => {
+      e.stopImmediatePropagation()
+    });
+    container && container.addEventListener('mousemove', (e) => {
+      e.stopImmediatePropagation()
+    });
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo)
+    })
+  }, 800);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo9', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "DEMO6"
   setTimeout(() => {
      const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -578,7 +678,7 @@ export default {
         size: size + 'px'
       })
     },
-
+    
     univerDemo1() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
@@ -619,6 +719,16 @@ export default {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo7');
+    },
+    univerDemo8() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo8');
+    },
+    univerDemo9() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('demo9');
     },
 
     removeFormat() {
