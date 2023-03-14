@@ -346,7 +346,7 @@ const config = {
       type: 0,
       id: 'sheet-01',
       name: 'sheet1',
-      columnCount,
+      // columnCount,
       status: 1,
       cellData
     }
@@ -448,7 +448,7 @@ univerDocCustom({
 })
 }
 export function initSlideNew(setting) {
-  const {toolbar,refs} = setting
+  const {toolbar,refs,innerLeft = false} = setting
 const { univerSlideCustom, UniverCore, CommonPluginData } = UniverPreactTs
 const { DEFAULT_SLIDE_DATA } = CommonPluginData
 
@@ -459,7 +459,7 @@ const uiSlidesConfig = {
   container: refs,
   layout: {
     slideContainerConfig: {
-      innerLeft: false,
+      innerLeft,
       innerRight: false,
       outerLeft: false,
       infoBar: false,
@@ -467,8 +467,13 @@ const uiSlidesConfig = {
     }
   },
 }
-univerSlideCustom({
+const universlide = univerSlideCustom({
   coreConfig,
   uiSlidesConfig
 })
+
+setTimeout(() => {
+
+  universlide._context.getPluginManager().getPluginByName('slide').getCanvasView().scrollToCenter()
+}, 0);
 }

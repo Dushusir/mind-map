@@ -49,10 +49,16 @@ export default {
       console.log(content)
       this.key = content;
       setTimeout(() => {
-          initUniverNew(content,{
-                toolbar:true,
-                refs:this.$refs.sheetContainer
-            })
+         let config = {
+              toolbar:true,
+              refs:this.$refs.sheetContainer 
+          }
+
+          if(content === 'slide'){
+            config.innerLeft = true
+          }
+
+          initUniverNew(content,config)
           // initUniver(content,{
           //       toolBar:true,
           //       refs:this.$refs.sheetContainer
@@ -84,17 +90,6 @@ export default {
           this.dialogVisible = false;
         })
         .catch(_ => {})
-    },
-
-    openUniver(){
-        const content = this.content || "DEMO1"
-        this.dialogVisible = true;
-        setTimeout(() => {
-            initUnive(content,{
-                toolBar:true,
-                refs:this.$refs.sheetContainer
-            })
-        }, 300);
     },
   }
 
