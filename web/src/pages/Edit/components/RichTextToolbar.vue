@@ -182,6 +182,10 @@ ComponentFactory.register.set('demo1', function (id) {
 
   let demo = "DEMO1"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -211,7 +215,7 @@ ComponentFactory.register.set('demo1', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -233,6 +237,10 @@ ComponentFactory.register.set('demo2', function (id) {
 
   let demo = "DEMO2"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -262,7 +270,7 @@ ComponentFactory.register.set('demo2', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -283,6 +291,10 @@ ComponentFactory.register.set('demo3', function (id) {
 
   let demo = "DEMO3"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -312,7 +324,7 @@ ComponentFactory.register.set('demo3', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -333,6 +345,10 @@ ComponentFactory.register.set('demo4', function (id) {
 
   let demo = "DEMO4"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -362,7 +378,7 @@ ComponentFactory.register.set('demo4', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -383,6 +399,10 @@ ComponentFactory.register.set('demo5', function (id) {
 
   let demo = "sheet"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     container && container.addEventListener('wheel', (e) => {
@@ -412,7 +432,7 @@ ComponentFactory.register.set('demo5', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -433,6 +453,10 @@ ComponentFactory.register.set('demo6', function (id) {
 
   let demo = "doc"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
      const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
@@ -457,7 +481,7 @@ ComponentFactory.register.set('demo6', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -478,6 +502,10 @@ ComponentFactory.register.set('demo7', function (id) {
 
   let demo = "slide"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
      const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
@@ -502,7 +530,7 @@ ComponentFactory.register.set('demo7', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -523,6 +551,10 @@ ComponentFactory.register.set('demo8', function (id) {
 
   let demo = "DEMO5"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
      const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
@@ -547,7 +579,7 @@ ComponentFactory.register.set('demo8', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -568,6 +600,10 @@ ComponentFactory.register.set('demo9', function (id) {
 
   let demo = "DEMO6"
   setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if(foreignObject){
+      foreignObject.id = univerid;
+    }
      const container = div;
     container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
@@ -592,7 +628,7 @@ ComponentFactory.register.set('demo9', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo)
+      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
     })
   }, 800);
   return cache[id] = div;
