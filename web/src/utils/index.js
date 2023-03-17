@@ -259,7 +259,7 @@ univerSlideCustom({
 }
 
 export function initUniverNew(content,setting) {
-  if(content.indexOf('universheet') !== -1){
+  if(content.indexOf('<table') > -1 && content.indexOf('<td') > -1){
     setting.isPasteSheet = true
     return initSheetNew(content, setting)
   }
