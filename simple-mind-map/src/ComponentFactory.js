@@ -1,8 +1,8 @@
 export class ComponentFactory {
-    static build(key, id) {
+    static build(key, id,attr) {
         const create = ComponentFactory.register.get(key);
         if (create) {
-            return create(id);
+            return create(id,attr);
         }
     }
 }

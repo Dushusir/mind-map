@@ -830,10 +830,11 @@ class Render {
   }
 
   // 设置容器节点
-  setComponent(node, key) {
+  setComponent(node, key,attrs) {
     this.setComponentDataRender(node, {
       componentKey: key,
-      componentId: ++ ComponentFactory.id
+      componentId: ++ ComponentFactory.id,
+      attrs
     });
   }
 

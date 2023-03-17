@@ -579,12 +579,13 @@ class Node {
   // 创建容器节点
   createComponentNode() {
     let componentKey = this.nodeData.data.componentKey
+    let attrs = this.nodeData.data.attrs
     let componentId = this.nodeData.data.componentId
     if (!componentKey) {
       return null;
     }
     ComponentFactory.id = Math.max(ComponentFactory.id, componentId);
-    let component = ComponentFactory.build(componentKey, componentId);
+    let component = ComponentFactory.build(componentKey, componentId,attrs);
     let g = new G()
     component.style.position = 'fixed';
     component.style.left = '-9999999px';
@@ -1307,8 +1308,8 @@ class Node {
     this.mindMap.execCommand('SET_NODE_SHAPE', this, shape)
   }
 
-  setComponent(key) {
-    this.mindMap.execCommand('SET_COMPONENT', this, key);
+  setComponent(key,attrs) {
+    this.mindMap.execCommand('SET_COMPONENT', this, key,attrs);
   }
 }
 

@@ -163,9 +163,9 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniver,initUniverNew} from '@/utils'
+import {makeid, initUniver,initUniverNew, stopImmediatePropagation} from '@/utils'
 const cache = {};
-ComponentFactory.register.set('demo1', function (id) {
+ComponentFactory.register.set('demo1', function (id,obj) {
   console.log(id)
   if (cache[id]) {
     return cache[id];
@@ -180,7 +180,7 @@ ComponentFactory.register.set('demo1', function (id) {
   div.style.width = '400px';
   div.style.height = '225px';
 
-  let demo = "DEMO1"
+  let demo = obj && obj.attr ? obj.attr : "DEMO1"
   setTimeout(() => {
     const foreignObject = div.parentNode;
     if(foreignObject){
@@ -188,21 +188,9 @@ ComponentFactory.register.set('demo1', function (id) {
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+
+    stopImmediatePropagation(container)
+    
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -243,21 +231,7 @@ ComponentFactory.register.set('demo2', function (id) {
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -297,21 +271,7 @@ ComponentFactory.register.set('demo3', function (id) {
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -351,21 +311,7 @@ ComponentFactory.register.set('demo4', function (id) {
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -405,21 +351,7 @@ ComponentFactory.register.set('demo5', function (id) {
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -458,21 +390,7 @@ ComponentFactory.register.set('demo6', function (id) {
       foreignObject.id = univerid;
     }
      const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
       refs: container
@@ -507,21 +425,7 @@ ComponentFactory.register.set('demo7', function (id) {
       foreignObject.id = univerid;
     }
      const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
       refs: container
@@ -556,21 +460,7 @@ ComponentFactory.register.set('demo8', function (id) {
       foreignObject.id = univerid;
     }
      const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
       refs: container
@@ -605,21 +495,7 @@ ComponentFactory.register.set('demo9', function (id) {
       foreignObject.id = univerid;
     }
      const container = div;
-    container && container.addEventListener('wheel', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('drag', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousedown', (e) => {
-      e.stopImmediatePropagation()
-    });
-    container && container.addEventListener('mousemove', (e) => {
-      e.stopImmediatePropagation()
-    });
+    stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
       refs: container
@@ -663,9 +539,26 @@ export default {
   },
   created() {
     this.$bus.$on('rich_text_selection_change', this.onRichTextSelectionChange)
+
+    this.mindMap.on('rich_text_init_change',()=>{
+        // this.mindMap.richText.quill.on('text-change',(data)=>{
+        //   console.log('data==t22222ext==',this.mindMap.richText.quill);
+        // })
+
+        this.mindMap.richText.quill.clipboard.addMatcher("table", (node, delta)=> {
+          const tableHTML = node.outerHTML;
+
+          this.univerDemo1(tableHTML)
+          return delta
+        });
+    })
+    
   },
   mounted() {
     document.body.append(this.$refs.richTextToolbar)
+
+    window.dispatchEvent(new Event('resize', {}));
+    
   },
   beforeDestroy() {
     this.$bus.$off('rich_text_selection_change', this.onRichTextSelectionChange)
@@ -715,10 +608,10 @@ export default {
       })
     },
     
-    univerDemo1() {
+    univerDemo1(attr) {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('demo1');
+      activeNode.setComponent('demo1',{attr});
     },
 
     univerDemo2() {

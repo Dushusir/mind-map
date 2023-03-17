@@ -259,9 +259,13 @@ univerSlideCustom({
 }
 
 export function initUniverNew(content,setting) {
+  if(content.indexOf('universheet') !== -1){
+    setting.isPasteSheet = true
+    return initSheetNew(content, setting)
+  }
   switch (content) {
     case 'sheet':
-      initSheetNew(setting)
+      initSheetNew(content,setting)
       break;
     case 'doc':
       initDocNew(setting)
@@ -283,18 +287,45 @@ export function initUniverNew(content,setting) {
   }
 }
 
-export function initSheetNew(setting) {
-  const {toolbar,refs} = setting
+export function initSheetNew(tableHTML,setting) {
+  const {toolbar,refs,isPasteSheet} = setting
 let cellData = {}
+let mergeData = {}
+let rowData = []
+let columnData = []
 
+if (isPasteSheet) {
+  const { BaseComponent } = UniverPreactTs
+  const { handelTableToJson, handleTableColgroup, handleTableRowGroup, handleTableMergeData } = BaseComponent
+  const data = handelTableToJson(tableHTML)
+  const colInfo = handleTableColgroup(tableHTML);
+  columnData = colInfo.map(w => {
+      return { w }
+  })
+  const rowInfo = handleTableRowGroup(tableHTML);
+  rowData = rowInfo.map(h => {
+      return { h }
+  })
+
+  const tableData = handleTableMergeData(data);
+  mergeData = tableData.mergeData;
+
+  data.forEach((row, i) => {
+      cellData[i] = {}
+      row.forEach((column, j) => {
+          cellData[i][j] = column
+      })
+  })
+} else {
   cellData = {
-    0: {
-      0: {
-        m: '',
-        v: ''
+      '0': {
+          '0': {
+              m: '',
+              v: ''
+          }
       }
-    }
   }
+}
 
 
 const { univerSheetCustom, CommonPluginData } = UniverPreactTs
@@ -352,6 +383,13 @@ const config = {
     }
   }
 }
+
+if(isPasteSheet){
+  config.sheets['sheet-01'].mergeData = mergeData;
+  config.sheets['sheet-01'].rowData = rowData;
+  config.sheets['sheet-01'].columnData = columnData;
+}
+
 const coreConfig = Object.assign({}, DEFAULT_WORKBOOK_DATA, config)
 
 univerSheetCustom({
@@ -476,4 +514,46 @@ setTimeout(() => {
 
   universlide._context.getPluginManager().getPluginByName('slide').getCanvasView().scrollToCenter()
 }, 0);
+}
+
+export function stopImmediatePropagation(container) {
+  container && container.addEventListener('wheel', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('drag', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('mousedown', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('mousemove', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('keydown', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('keyup', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('cut', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('copy', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('paste', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('compositionstart', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('compositionupdate', (e) => {
+      e.stopImmediatePropagation()
+  });
+  container && container.addEventListener('compositionend', (e) => {
+      e.stopImmediatePropagation()
+  });
 }
