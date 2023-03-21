@@ -163,7 +163,7 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniver,initUniverNew, stopImmediatePropagation} from '@/utils'
+import {makeid,initUniverNew, stopImmediatePropagation} from '@/utils'
 const cache = {};
 ComponentFactory.register.set('demo1', function (id,obj) {
   console.log(id)
@@ -190,7 +190,7 @@ ComponentFactory.register.set('demo1', function (id,obj) {
     const container = div;
 
     stopImmediatePropagation(container)
-    
+
     initUniverNew(demo, {
       toolbar: false,
       refs: container
@@ -539,26 +539,19 @@ export default {
   },
   created() {
     this.$bus.$on('rich_text_selection_change', this.onRichTextSelectionChange)
-
     this.mindMap.on('rich_text_init_change',()=>{
-        // this.mindMap.richText.quill.on('text-change',(data)=>{
-        //   console.log('data==t22222ext==',this.mindMap.richText.quill);
-        // })
-
-        this.mindMap.richText.quill.clipboard.addMatcher("table", (node, delta)=> {
-          const tableHTML = node.outerHTML;
-
-          this.univerDemo1(tableHTML)
+        this.mindMap.richText.quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta)=> {
+          const html = node.data;
+          this.univerDemo1(html)
           return delta
         });
     })
-    
   },
   mounted() {
     document.body.append(this.$refs.richTextToolbar)
 
     window.dispatchEvent(new Event('resize', {}));
-    
+
   },
   beforeDestroy() {
     this.$bus.$off('rich_text_selection_change', this.onRichTextSelectionChange)
@@ -607,7 +600,7 @@ export default {
         size: size + 'px'
       })
     },
-    
+
     univerDemo1(attr) {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();

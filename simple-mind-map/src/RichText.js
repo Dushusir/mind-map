@@ -234,9 +234,7 @@ class RichText {
         )
       }
     })
-
     this.mindMap.emit('rich_text_init_change', true)
-
   }
 
   // 选中全部
