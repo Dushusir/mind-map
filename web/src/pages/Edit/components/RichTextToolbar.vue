@@ -163,9 +163,10 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid,initUniverNew, stopImmediatePropagation} from '@/utils'
+import {makeid, initUniverNew, stopImmediatePropagation} from '@/utils'
+
 const cache = {};
-ComponentFactory.register.set('demo1', function (id,obj) {
+ComponentFactory.register.set('demo1', function (id, obj) {
   console.log(id)
   if (cache[id]) {
     return cache[id];
@@ -183,7 +184,7 @@ ComponentFactory.register.set('demo1', function (id,obj) {
   let demo = obj && obj.attr ? obj.attr : "DEMO1"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
@@ -203,7 +204,7 @@ ComponentFactory.register.set('demo1', function (id,obj) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -226,7 +227,7 @@ ComponentFactory.register.set('demo2', function (id) {
   let demo = "DEMO2"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
@@ -244,7 +245,7 @@ ComponentFactory.register.set('demo2', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -266,7 +267,7 @@ ComponentFactory.register.set('demo3', function (id) {
   let demo = "DEMO3"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
@@ -284,7 +285,7 @@ ComponentFactory.register.set('demo3', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -306,7 +307,7 @@ ComponentFactory.register.set('demo4', function (id) {
   let demo = "DEMO4"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
@@ -324,7 +325,7 @@ ComponentFactory.register.set('demo4', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -346,7 +347,7 @@ ComponentFactory.register.set('demo5', function (id) {
   let demo = "sheet"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
@@ -364,7 +365,7 @@ ComponentFactory.register.set('demo5', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -386,10 +387,10 @@ ComponentFactory.register.set('demo6', function (id) {
   let demo = "doc"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
-     const container = div;
+    const container = div;
     stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
@@ -399,7 +400,7 @@ ComponentFactory.register.set('demo6', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -421,10 +422,10 @@ ComponentFactory.register.set('demo7', function (id) {
   let demo = "slide"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
-     const container = div;
+    const container = div;
     stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
@@ -434,7 +435,7 @@ ComponentFactory.register.set('demo7', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -456,10 +457,10 @@ ComponentFactory.register.set('demo8', function (id) {
   let demo = "DEMO5"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
-     const container = div;
+    const container = div;
     stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
@@ -469,7 +470,7 @@ ComponentFactory.register.set('demo8', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -491,10 +492,10 @@ ComponentFactory.register.set('demo9', function (id) {
   let demo = "DEMO6"
   setTimeout(() => {
     const foreignObject = div.parentNode;
-    if(foreignObject){
+    if (foreignObject) {
       foreignObject.id = univerid;
     }
-     const container = div;
+    const container = div;
     stopImmediatePropagation(container)
     initUniverNew(demo, {
       toolBar: false,
@@ -504,7 +505,7 @@ ComponentFactory.register.set('demo9', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo,univerid)
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
   }, 800);
   return cache[id] = div;
@@ -539,12 +540,21 @@ export default {
   },
   created() {
     this.$bus.$on('rich_text_selection_change', this.onRichTextSelectionChange)
-    this.mindMap.on('rich_text_init_change',()=>{
-        this.mindMap.richText.quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta)=> {
-          const html = node.data;
+    this.mindMap.on('rich_text_init_change', () => {
+      this.mindMap.richText.quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta) => {
+        const html = node.data;
+        if (/<\/?[a-z][\s\S]*>/i.test(html)) {
+          console.log('text html', html)
           this.univerDemo1(html)
-          return delta
-        });
+        }
+        return delta
+      });
+      this.mindMap.richText.quill.clipboard.addMatcher('table', (node, delta) => {
+        const html = node.outerHTML;
+        console.log('element html', html)
+        this.univerDemo1(html)
+        return delta
+      });
     })
   },
   mounted() {
@@ -604,7 +614,7 @@ export default {
     univerDemo1(attr) {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('demo1',{attr});
+      activeNode.setComponent('demo1', {attr});
     },
 
     univerDemo2() {
