@@ -542,9 +542,10 @@ export default {
     this.$bus.$on('rich_text_selection_change', this.onRichTextSelectionChange)
     this.mindMap.on('rich_text_init_change', () => {
       this.mindMap.richText.quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta) => {
-        const html = node.data;
+        let html = node.data;
         if (/<\/?[a-z][\s\S]*>/i.test(html)) {
           console.log('text html', html)
+          html = html.replace(/ /g,'')
           this.univerDemo1(html)
         }
         return delta
