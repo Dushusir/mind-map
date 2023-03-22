@@ -258,7 +258,30 @@ univerSlideCustom({
 })
 }
 
+function refresh(params) {
+  const rootEle = document.querySelector('.mindMapContainer');
+  if (!rootEle) return;
+
+  var config = {
+    childList: true,
+    subtree: true,
+  };
+  var time = null;
+  new MutationObserver(() => {
+    if (time) {
+      clearTimeout(time);
+      time = null;
+    }
+
+    time = setTimeout(() => {
+      console.log('refresh')
+      window.dispatchEvent(new Event('resize', {}));
+    }, 500);
+  }).observe(rootEle, config);
+}
 export function initUniverNew(content,setting) {
+
+  refresh()
   if(content.indexOf('<table') > -1 && content.indexOf('<td') > -1){
     setting.isPasteSheet = true
     return initSheetNew(content, setting)

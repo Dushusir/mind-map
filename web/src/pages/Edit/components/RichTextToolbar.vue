@@ -181,7 +181,7 @@ ComponentFactory.register.set('demo1', function (id, obj) {
   div.style.width = '400px';
   div.style.height = '225px';
 
-  let demo = obj && obj.attr ? obj.attr : "DEMO1"
+  let demo = obj && obj.attr && typeof obj.attr === 'string' ? obj.attr : "DEMO1"
   setTimeout(() => {
     const foreignObject = div.parentNode;
     if (foreignObject) {
@@ -206,7 +206,7 @@ ComponentFactory.register.set('demo1', function (id, obj) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo2', function (id) {
@@ -247,7 +247,7 @@ ComponentFactory.register.set('demo2', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo3', function (id) {
@@ -287,7 +287,7 @@ ComponentFactory.register.set('demo3', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo4', function (id) {
@@ -327,7 +327,7 @@ ComponentFactory.register.set('demo4', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo5', function (id) {
@@ -367,7 +367,7 @@ ComponentFactory.register.set('demo5', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo6', function (id) {
@@ -402,7 +402,7 @@ ComponentFactory.register.set('demo6', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo7', function (id) {
@@ -437,7 +437,7 @@ ComponentFactory.register.set('demo7', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo8', function (id) {
@@ -472,7 +472,7 @@ ComponentFactory.register.set('demo8', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 ComponentFactory.register.set('demo9', function (id) {
@@ -507,7 +507,7 @@ ComponentFactory.register.set('demo9', function (id) {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
-  }, 800);
+  }, 100);
   return cache[id] = div;
 });
 export default {
