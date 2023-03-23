@@ -319,13 +319,31 @@ let columnData = []
 
 if (isPasteSheet) {
   const { BaseComponent } = UniverPreactTs
-  const { handelTableToJson, handleTableColgroup, handleTableRowGroup, handleTableMergeData } = BaseComponent
-  const data = handelTableToJson(tableHTML)
-  const colInfo = handleTableColgroup(tableHTML);
+  const { handelTableToJson, handleTableColgroup, handleTableRowGroup, handleTableMergeData,handelExcelToJson,handlePlainToJson } = BaseComponent
+  // const data = handelTableToJson(tableHTML)
+  // const colInfo = handleTableColgroup(tableHTML);
+  // const rowInfo = handleTableRowGroup(tableHTML);
+
+  let data;
+  let colInfo;
+  let rowInfo;
+  if (tableHTML) {
+      if (tableHTML.indexOf('xmlns:x="urn:schemas-microsoft-com:office:excel"') > -1) {
+          data = handelExcelToJson(tableHTML);
+          colInfo = handleTableColgroup(tableHTML);
+          rowInfo = handleTableRowGroup(tableHTML);
+      } else if (tableHTML.indexOf('<table') > -1 && tableHTML.indexOf('<td') > -1) {
+          data = handelTableToJson(tableHTML);
+          colInfo = handleTableColgroup(tableHTML);
+          rowInfo = handleTableRowGroup(tableHTML);
+      } else {
+          data = handlePlainToJson(tableHTML);
+      }
+  }
+
   columnData = colInfo.map(w => {
       return { w }
   })
-  const rowInfo = handleTableRowGroup(tableHTML);
   rowData = rowInfo.map(h => {
       return { h }
   })
