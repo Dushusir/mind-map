@@ -58,7 +58,6 @@ export function makeid(length) {
   return result;
 }
 
-
 export function initUniver(content,setting){
   switch (content) {
   case 'sheet':
@@ -555,6 +554,53 @@ setTimeout(() => {
 
   universlide._context.getPluginManager().getPluginByName('slide').getCanvasView().scrollToCenter()
 }, 0);
+}
+
+export function readExcelCopyData(e, success) {
+  let clipboardData = e.clipboardData;
+  let handel = 0;
+  let count = 0;
+  let result = new Map();
+  let items = clipboardData.items;
+  let callback = (type, data) => {
+    result[type] = data;
+    if (count === handel) {
+      success(result);
+    }
+  }
+  for (let i = 0; i < items.length; i++) {
+    let item = items[i];
+    if (item.kind === 'string' && item.type === 'text/plain') {
+      // 处理剪贴板中的纯文本数据
+      item.getAsString((data) => {
+        count++;
+        console.log('text data:', data);
+        callback('text', data);
+      });
+      handel++;
+    } else if (item.kind === 'string' && item.type === 'text/html') {
+      // 处理剪贴板中的 HTML 数据
+      item.getAsString((data) => {
+        count++;
+        console.log('html data:', data);
+        callback('html',data);
+      });
+      handel++;
+    } else if (item.kind === 'file' && item.type === 'application/vnd.ms-excel') {
+      // 处理剪贴板中的 Excel 文件数据
+      let file = item.getAsFile();
+      console.log('excel file:', file);
+      let reader = new FileReader();
+      reader.onload = function(event) {
+        count++;
+        let data = event.target.result;
+        console.log('excel data:', data);
+        callback('file', data);
+      };
+      reader.readAsText(file);
+      handel++;
+    }
+  }
 }
 
 export function stopImmediatePropagation(container) {

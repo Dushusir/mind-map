@@ -163,7 +163,7 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniverNew, stopImmediatePropagation} from '@/utils'
+import {makeid, initUniverNew, stopImmediatePropagation, execCommandCopy, readExcelCopyData} from '@/utils'
 
 const cache = {};
 ComponentFactory.register.set('demo1', function (id, obj) {
@@ -541,22 +541,17 @@ export default {
   created() {
     this.$bus.$on('rich_text_selection_change', this.onRichTextSelectionChange)
     this.mindMap.on('rich_text_init_change', () => {
-      this.mindMap.richText.quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta) => {
-        let html = node.data;
-        if (/<\/?[a-z][\s\S]*>/i.test(html)) {
-          console.log('text html', html)
-          html = html.replace(/ /g,'')
-          this.univerDemo1(html)
-        }
-        return delta
-      });
-      this.mindMap.richText.quill.clipboard.addMatcher('table', (node, delta) => {
-        const html = node.outerHTML;
-        console.log('element html', html)
-        this.univerDemo1(html)
-        return delta
+      this.mindMap.richText.quill.root.addEventListener('paste', (e) => {
+        readExcelCopyData(e, (result) => {
+          if (result['html']) {
+            this.univerDemo1(result['html'])
+          } else if (result['text']) {
+            this.univerDemo1(result['text'])
+          }
+        });
       });
     })
+
   },
   mounted() {
     document.body.append(this.$refs.richTextToolbar)
