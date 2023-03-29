@@ -106,12 +106,12 @@
     </el-tooltip>
 
     <el-tooltip content="工作" placement="top">
-      <div class="btn univerTooltip" @click="univerDemo9">
+      <div class="btn univerTooltip" @click="univerDemo6">
         <span>工作</span>
       </div>
     </el-tooltip>
     <el-tooltip content="计划" placement="top">
-      <div class="btn univerTooltip" @click="univerDemo8">
+      <div class="btn univerTooltip" @click="univerDemo5">
         <span>计划</span>
       </div>
     </el-tooltip>
@@ -140,20 +140,32 @@
     </el-tooltip>
 
     <el-tooltip content="表格" placement="top">
-      <div class="btn univerTooltip" @click="univerDemo5">
+      <div class="btn univerTooltip" @click="univerSheet">
         <span>表格</span>
       </div>
     </el-tooltip>
 
     <el-tooltip content="文档" placement="top">
-      <div class="btn univerTooltip" @click="univerDemo6">
+      <div class="btn univerTooltip" @click="univerDoc">
         <span>文档</span>
       </div>
     </el-tooltip>
 
     <el-tooltip content="演示文稿" placement="top">
-      <div class="btn univerTooltip" @click="univerDemo7">
+      <div class="btn univerTooltip" @click="univerSlide">
         <span>演示文稿</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="Demo7" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo7">
+        <span>Demo7</span>
+      </div>
+    </el-tooltip>
+
+    <el-tooltip content="Demo8" placement="top">
+      <div class="btn univerTooltip" @click="univerDemo8">
+        <span>Demo8</span>
       </div>
     </el-tooltip>
   </div>
@@ -163,7 +175,7 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniverNew, stopImmediatePropagation, execCommandCopy, readExcelCopyData} from '@/utils'
+import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData} from '@/utils'
 
 const cache = {};
 ComponentFactory.register.set('demo1', function (id, obj) {
@@ -344,116 +356,6 @@ ComponentFactory.register.set('demo5', function (id) {
   div.style.width = '400px';
   div.style.height = '225px';
 
-  let demo = "sheet"
-  setTimeout(() => {
-    const foreignObject = div.parentNode;
-    if (foreignObject) {
-      foreignObject.id = univerid;
-    }
-    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
-    const container = div;
-    stopImmediatePropagation(container)
-    initUniverNew(demo, {
-      toolbar: false,
-      refs: container
-    })
-    // initUniver(demo, {
-    //   toolBar: false,
-    //   refs: container
-    // })
-    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
-    const btnFullscreen = container.querySelector('.btn-fullscreen');
-    btnFullscreen.addEventListener('click', () => {
-      // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
-    })
-  }, 100);
-  return cache[id] = div;
-});
-ComponentFactory.register.set('demo6', function (id) {
-  if (cache[id]) {
-    return cache[id];
-  }
-
-  const div = document.createElement('div');
-  const univerid = makeid(6)
-
-  div.id = "univer-demo";
-  div.setAttribute("data-univerid", univerid)
-  div.classList.add("univer-demo");
-  div.style.width = '400px';
-  div.style.height = '225px';
-
-  let demo = "doc"
-  setTimeout(() => {
-    const foreignObject = div.parentNode;
-    if (foreignObject) {
-      foreignObject.id = univerid;
-    }
-    const container = div;
-    stopImmediatePropagation(container)
-    initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
-    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
-    const btnFullscreen = container.querySelector('.btn-fullscreen');
-    btnFullscreen.addEventListener('click', () => {
-      // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
-    })
-  }, 100);
-  return cache[id] = div;
-});
-ComponentFactory.register.set('demo7', function (id) {
-  if (cache[id]) {
-    return cache[id];
-  }
-
-  const div = document.createElement('div');
-  const univerid = makeid(6)
-
-  div.id = "univer-demo";
-  div.setAttribute("data-univerid", univerid)
-  div.classList.add("univer-demo");
-  div.style.width = '400px';
-  div.style.height = '225px';
-
-  let demo = "slide"
-  setTimeout(() => {
-    const foreignObject = div.parentNode;
-    if (foreignObject) {
-      foreignObject.id = univerid;
-    }
-    const container = div;
-    stopImmediatePropagation(container)
-    initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
-    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
-    const btnFullscreen = container.querySelector('.btn-fullscreen');
-    btnFullscreen.addEventListener('click', () => {
-      // eslint-disable-next-line no-undef
-      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
-    })
-  }, 100);
-  return cache[id] = div;
-});
-ComponentFactory.register.set('demo8', function (id) {
-  if (cache[id]) {
-    return cache[id];
-  }
-
-  const div = document.createElement('div');
-  const univerid = makeid(6)
-
-  div.id = "univer-demo";
-  div.setAttribute("data-univerid", univerid)
-  div.classList.add("univer-demo");
-  div.style.width = '400px';
-  div.style.height = '225px';
-
   let demo = "DEMO5"
   setTimeout(() => {
     const foreignObject = div.parentNode;
@@ -475,7 +377,7 @@ ComponentFactory.register.set('demo8', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo9', function (id) {
+ComponentFactory.register.set('demo6', function (id) {
   if (cache[id]) {
     return cache[id];
   }
@@ -510,6 +412,188 @@ ComponentFactory.register.set('demo9', function (id) {
   }, 100);
   return cache[id] = div;
 });
+ComponentFactory.register.set('demo7', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "DEMO7"
+  setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if (foreignObject) {
+      foreignObject.id = univerid;
+    }
+    const container = div;
+    stopImmediatePropagation(container)
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
+    })
+  }, 100);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('demo8', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "DEMO8"
+  setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if (foreignObject) {
+      foreignObject.id = univerid;
+    }
+    const container = div;
+    stopImmediatePropagation(container)
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
+    })
+  }, 100);
+  return cache[id] = div;
+});
+
+ComponentFactory.register.set('sheet', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "sheet"
+  setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if (foreignObject) {
+      foreignObject.id = univerid;
+    }
+    // const container = document.querySelector(`[data-univerid="${univerid}"]`);
+    const container = div;
+    stopImmediatePropagation(container)
+    initUniverNew(demo, {
+      toolbar: false,
+      refs: container
+    })
+    // initUniver(demo, {
+    //   toolBar: false,
+    //   refs: container
+    // })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
+    })
+  }, 100);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('doc', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "doc"
+  setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if (foreignObject) {
+      foreignObject.id = univerid;
+    }
+    const container = div;
+    stopImmediatePropagation(container)
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
+    })
+  }, 100);
+  return cache[id] = div;
+});
+ComponentFactory.register.set('slide', function (id) {
+  if (cache[id]) {
+    return cache[id];
+  }
+
+  const div = document.createElement('div');
+  const univerid = makeid(6)
+
+  div.id = "univer-demo";
+  div.setAttribute("data-univerid", univerid)
+  div.classList.add("univer-demo");
+  div.style.width = '400px';
+  div.style.height = '225px';
+
+  let demo = "slide"
+  setTimeout(() => {
+    const foreignObject = div.parentNode;
+    if (foreignObject) {
+      foreignObject.id = univerid;
+    }
+    const container = div;
+    stopImmediatePropagation(container)
+    initUniverNew(demo, {
+      toolBar: false,
+      refs: container
+    })
+    container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
+    const btnFullscreen = container.querySelector('.btn-fullscreen');
+    btnFullscreen.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      Vue.prototype.$bus.$emit('openUniver', demo, univerid)
+    })
+  }, 100);
+  return cache[id] = div;
+});
+
 export default {
   name: 'RichTextToolbar',
   components: {
@@ -555,7 +639,6 @@ export default {
   },
   mounted() {
     document.body.append(this.$refs.richTextToolbar)
-
     window.dispatchEvent(new Event('resize', {}));
 
   },
@@ -612,37 +695,31 @@ export default {
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo1', {attr});
     },
-
     univerDemo2() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo2');
     },
-
     univerDemo3() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo3');
     },
-
     univerDemo4() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo4');
     },
-
     univerDemo5() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo5');
     },
-
     univerDemo6() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo6');
     },
-
     univerDemo7() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
@@ -653,10 +730,23 @@ export default {
       this.mindMap.richText.cancelEditText();
       activeNode.setComponent('demo8');
     },
-    univerDemo9() {
+
+    univerSheet() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('demo9');
+      activeNode.setComponent('sheet');
+    },
+
+    univerDoc() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('doc');
+    },
+
+    univerSlide() {
+      const activeNode = this.mindMap.renderer.activeNodeList[0];
+      this.mindMap.richText.cancelEditText();
+      activeNode.setComponent('slide');
     },
 
     removeFormat() {
