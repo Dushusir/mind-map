@@ -175,10 +175,18 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData, execCommandPaste, getUniverId, setUniverId, urlCollbaration} from '@/utils'
+import {
+  makeid,
+  initUniverNew,
+  stopImmediatePropagation,
+  readExcelCopyData,
+  execCommandPaste,
+  getUniverId,
+  setUniverId,
+  urlCollbaration
+} from '@/utils'
 
 const cache = {};
-
 ComponentFactory.register.set('demo1', function (id, obj) {
   console.log(id)
   if (cache[id]) {
@@ -205,17 +213,16 @@ ComponentFactory.register.set('demo1', function (id, obj) {
 
     stopImmediatePropagation(container)
 
-    let  univerSheet = null
+    let univerSheet = null
     let univerId = null
-     initUniverNew(demo, {
+    initUniverNew(demo, {
       toolbar: false,
       refs: container,
       univerId: getUniverId(id),
-      success: (universheet)=>{
+      success: (universheet) => {
         univerSheet = universheet
         univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-
-        setUniverId(id,univerId)
+        setUniverId(id, univerId)
       }
     },)
     // initUniver(demo, {
@@ -230,12 +237,11 @@ ComponentFactory.register.set('demo1', function (id, obj) {
       // const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
 
       // obj.univerId = univerId
-      const url = urlCollbaration + '?id='+univerId;
+      const url = urlCollbaration + '?id=' + univerId;
       execCommandPaste(url);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -245,7 +251,7 @@ ComponentFactory.register.set('demo1', function (id, obj) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo2', function (id) {
+ComponentFactory.register.set('demo2', function (id, obj) {
   console.log(id)
   if (cache[id]) {
     return cache[id];
@@ -269,9 +275,17 @@ ComponentFactory.register.set('demo2', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
       toolbar: false,
-      refs: container
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
     })
     // initUniver(demo, {
     //   toolBar: false,
@@ -286,18 +300,17 @@ ComponentFactory.register.set('demo2', function (id) {
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo3', function (id) {
+ComponentFactory.register.set('demo3', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -320,10 +333,18 @@ ComponentFactory.register.set('demo3', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
       toolbar: false,
-      refs: container
-    })
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     // initUniver(demo, {
     //   toolBar: false,
     //   refs: container
@@ -333,12 +354,11 @@ ComponentFactory.register.set('demo3', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -348,7 +368,7 @@ ComponentFactory.register.set('demo3', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo4', function (id) {
+ComponentFactory.register.set('demo4', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -371,10 +391,18 @@ ComponentFactory.register.set('demo4', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
       toolbar: false,
-      refs: container
-    })
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     // initUniver(demo, {
     //   toolBar: false,
     //   refs: container
@@ -384,12 +412,11 @@ ComponentFactory.register.set('demo4', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -399,7 +426,7 @@ ComponentFactory.register.set('demo4', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo5', function (id) {
+ComponentFactory.register.set('demo5', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -421,21 +448,28 @@ ComponentFactory.register.set('demo5', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
+      toolbar: false,
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -445,7 +479,7 @@ ComponentFactory.register.set('demo5', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo6', function (id) {
+ComponentFactory.register.set('demo6', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -467,21 +501,28 @@ ComponentFactory.register.set('demo6', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
+      toolbar: false,
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -491,7 +532,7 @@ ComponentFactory.register.set('demo6', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo7', function (id) {
+ComponentFactory.register.set('demo7', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -513,21 +554,28 @@ ComponentFactory.register.set('demo7', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
+      toolbar: false,
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -537,7 +585,7 @@ ComponentFactory.register.set('demo7', function (id) {
   }, 100);
   return cache[id] = div;
 });
-ComponentFactory.register.set('demo8', function (id) {
+ComponentFactory.register.set('demo8', function (id, obj) {
   if (cache[id]) {
     return cache[id];
   }
@@ -559,21 +607,28 @@ ComponentFactory.register.set('demo8', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
-      toolBar: false,
-      refs: container
-    })
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
+      toolbar: false,
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -607,10 +662,18 @@ ComponentFactory.register.set('sheet', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    const univerSheet = initUniverNew(demo, {
+    let univerSheet = null
+    let univerId = null
+    initUniverNew(demo, {
       toolbar: false,
-      refs: container
-    })
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet) => {
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+        setUniverId(id, univerId)
+      }
+    },)
     // initUniver(demo, {
     //   toolBar: false,
     //   refs: container
@@ -620,12 +683,11 @@ ComponentFactory.register.set('sheet', function (id) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
-      this.$notify.info({
-        title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
-        duration: 1000,
+      const url = urlCollbaration + '?id=' + univerId;
+      execCommandPaste(url);
+      Vue.prototype.$message({
+        showClose: true,
+        message: 'Copy Success'
       });
     });
     btnFullscreen.addEventListener('click', () => {
@@ -670,7 +732,7 @@ ComponentFactory.register.set('doc', function (id) {
       execCommandPaste(univerId);
       this.$notify.info({
         title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
+        message: 'Copy Success',
         duration: 1000,
       });
     });
@@ -716,7 +778,7 @@ ComponentFactory.register.set('slide', function (id) {
       execCommandPaste(univerId);
       this.$notify.info({
         title: this.$t('edit.newFeatureNoticeTitle'),
-        message: this.$t('edit.copySuccess'),
+        message: 'Copy Success',
         duration: 1000,
       });
     });
@@ -852,7 +914,7 @@ export default {
     univerDemo6() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('demo6',{});
+      activeNode.setComponent('demo6', {});
     },
     univerDemo7() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
