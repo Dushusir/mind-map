@@ -287,14 +287,11 @@ export function initUniverNew(content,setting) {
   }
   switch (content) {
     case 'sheet':
-      initSheetNew(content,setting)
-      break;
+      return initSheetNew(content,setting)
     case 'doc':
-      initDocNew(setting)
-      break;
+      return initDocNew(setting)
     case 'slide':
-      initSlideNew(setting)
-    break;
+      return initSlideNew(setting)
     case 'DEMO1':
     case 'DEMO2':
     case 'DEMO3':
@@ -303,9 +300,7 @@ export function initUniverNew(content,setting) {
     case 'DEMO6':
     case 'DEMO7':
     case 'DEMO8':
-      initSheetByDemoNew(content,setting)
-      break;
-
+      return initSheetByDemoNew(content,setting)
     default:
       break;
   }
@@ -500,7 +495,7 @@ const coreConfig = UniverCore.Tools.deepClone(demoInfo[demo])
 
 coreConfig.id = makeid(6)
 coreConfig.sheetOrder = []
-univerSheetCustom({
+return univerSheetCustom({
   coreConfig,
   uiSheetsConfig,
   baseSheetsConfig
@@ -560,6 +555,20 @@ setTimeout(() => {
 
   universlide._context.getPluginManager().getPluginByName('slide').getCanvasView().scrollToCenter()
 }, 0);
+}
+
+export function execCommandPaste(text) {
+  let input = document.createElement('input');
+  input.style.position = 'fixed';
+  input.style.left = '0px';
+  input.style.top = '-99999px';
+  document.body.append(input);
+  input.focus();
+  input.value = text;
+  input.selectionStart = 0;
+  input.selectionEnd = input.value.length;
+  document.execCommand('copy');
+  document.body.removeChild(input);
 }
 
 export function readExcelCopyData(e, success) {

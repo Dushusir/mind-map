@@ -175,7 +175,7 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData} from '@/utils'
+import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData, execCommandPaste} from '@/utils'
 
 const cache = {};
 ComponentFactory.register.set('demo1', function (id, obj) {
@@ -204,7 +204,7 @@ ComponentFactory.register.set('demo1', function (id, obj) {
 
     stopImmediatePropagation(container)
 
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolbar: false,
       refs: container
     })
@@ -212,8 +212,19 @@ ComponentFactory.register.set('demo1', function (id, obj) {
     //   toolBar: false,
     //   refs: container
     // })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -245,7 +256,7 @@ ComponentFactory.register.set('demo2', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolbar: false,
       refs: container
     })
@@ -253,12 +264,23 @@ ComponentFactory.register.set('demo2', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
     })
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
   }, 100);
   return cache[id] = div;
 });
@@ -285,7 +307,7 @@ ComponentFactory.register.set('demo3', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolbar: false,
       refs: container
     })
@@ -293,8 +315,19 @@ ComponentFactory.register.set('demo3', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -325,7 +358,7 @@ ComponentFactory.register.set('demo4', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolbar: false,
       refs: container
     })
@@ -333,8 +366,19 @@ ComponentFactory.register.set('demo4', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -364,12 +408,23 @@ ComponentFactory.register.set('demo5', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -399,12 +454,23 @@ ComponentFactory.register.set('demo6', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -434,12 +500,23 @@ ComponentFactory.register.set('demo7', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -469,12 +546,23 @@ ComponentFactory.register.set('demo8', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -506,7 +594,7 @@ ComponentFactory.register.set('sheet', function (id) {
     // const container = document.querySelector(`[data-univerid="${univerid}"]`);
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolbar: false,
       refs: container
     })
@@ -514,8 +602,19 @@ ComponentFactory.register.set('sheet', function (id) {
     //   toolBar: false,
     //   refs: container
     // })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -545,12 +644,23 @@ ComponentFactory.register.set('doc', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
@@ -580,12 +690,23 @@ ComponentFactory.register.set('slide', function (id) {
     }
     const container = div;
     stopImmediatePropagation(container)
-    initUniverNew(demo, {
+    const univerSheet = initUniverNew(demo, {
       toolBar: false,
       refs: container
     })
+    container.insertAdjacentHTML('afterbegin', '<button class="select-fullscreen">复制</button>');
     container.insertAdjacentHTML('afterbegin', '<span class="btn-fullscreen el-icon-full-screen"></span>');
     const btnFullscreen = container.querySelector('.btn-fullscreen');
+    const selFullscreen = container.querySelector('.select-fullscreen');
+    selFullscreen.addEventListener('click', () => {
+      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+      execCommandPaste(univerId);
+      this.$notify.info({
+        title: this.$t('edit.newFeatureNoticeTitle'),
+        message: this.$t('edit.copySuccess'),
+        duration: 1000,
+      });
+    });
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)

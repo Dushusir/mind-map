@@ -15,6 +15,13 @@
     cursor: pointer;
 }
 
+.select-fullscreen {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    z-index: 9;
+}
+
 .univer-content-inner-right-container > div{
     display: block;
 }

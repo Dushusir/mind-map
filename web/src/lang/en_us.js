@@ -189,6 +189,7 @@ export default {
     cancel:"Cancel",
   },
   edit: {
+    copySuccess: "Copy success",
     newFeatureNoticeTitle: 'New feature reminder',
     newFeatureNoticeMessage: 'This update supports node rich text editing, But there are some defects, The most important impact is that the time to export the image is proportional to the number of nodes, Therefore, if you are more dependent on export requirements, you can use【Base style】-【Other config】-【Enable node rich text editing】Set to turn off rich text editing mode.'
   }
