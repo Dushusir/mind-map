@@ -48,6 +48,10 @@ export const fileToBuffer = file => {
   })
 }
 
+const ipAddress = '47.100.177.253:8500'
+export const urlCollbaration = 'http://luckysheet.lashuju.com/univer/'
+const config = {"type":"sheet","template":"DEMO1"}
+
 export function makeid(length) {
   var result           = '';
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -429,6 +433,8 @@ if(isPasteSheet){
 
 const coreConfig = Object.assign({}, DEFAULT_WORKBOOK_DATA, config)
 
+// 协同
+
 univerSheetCustom({
   coreConfig,
   uiSheetsConfig,
@@ -436,7 +442,7 @@ univerSheetCustom({
 })
 }
 export function initSheetByDemoNew(demo,setting) {
-  const {toolbar,refs} = setting
+  const {toolbar,refs,univerId,success: cb} = setting
 const { univerSheetCustom, CommonPluginData, UniverCore } = UniverPreactTs
 const {
   DEFAULT_WORKBOOK_DATA_DEMO1,
@@ -495,36 +501,98 @@ const coreConfig = UniverCore.Tools.deepClone(demoInfo[demo])
 
 coreConfig.id = makeid(6)
 coreConfig.sheetOrder = []
-return univerSheetCustom({
-  coreConfig,
-  uiSheetsConfig,
-  baseSheetsConfig
+
+if(univerId){
+  openDocs(univerId,(json)=>{
+    const universheetconfig = json.config;
+    const id = json.id;
+
+    const universheet = univerSheetCustom({
+        univerConfig:{
+            id
+        },
+        coreConfig:JSON.parse(universheetconfig),
+        uiSheetsConfig,
+        collaborationConfig:{
+            url: `${'ws://'+ipAddress+'/ws/'}${id}`
+        }
+    });
+
+    cb && cb(universheet)
+
+    
+
+    // const ids = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+    // console.info('ids===',ids)
+
+
 })
+
+return
+}
+newDocs('http://'+ipAddress+'/new',config,(json)=>{
+
+  // offline
+  if(json == null){
+    const universheet = univerSheetCustom({
+      coreConfig,
+      uiSheetsConfig,
+      baseSheetsConfig
+    })
+  
+    cb && cb(universheet)
+
+    return
+  }
+
+
+  const id = json.id;
+  const config = json.config;
+
+  if(config === 'default'){
+    const universheet = univerSheetCustom({
+      univerConfig:{
+          id
+      },
+      coreConfig,
+      uiSheetsConfig,
+      baseSheetsConfig
+    })
+  
+    cb && cb(universheet)
+
+    const universheetconfig = universheet.getWorkBook().getConfig()
+
+    updateDocs(id,universheetconfig)
+  }
+  
+})
+
 }
 export function initDocNew(setting) {
   const {toolbar,refs} = setting
-const { univerDocCustom, UniverCore, CommonPluginData } = UniverPreactTs
+  const { univerDocCustom, UniverCore, CommonPluginData } = UniverPreactTs
 
-const { DEFAULT_DOCUMENT_DATA_EN } = CommonPluginData
+  const { DEFAULT_DOCUMENT_DATA_EN } = CommonPluginData
 
-const coreConfig = UniverCore.Tools.deepClone(DEFAULT_DOCUMENT_DATA_EN)
-coreConfig.id = makeid(6)
+  const coreConfig = UniverCore.Tools.deepClone(DEFAULT_DOCUMENT_DATA_EN)
+  coreConfig.id = makeid(6)
 
-const uiDocsConfig = {
-  container: refs,
-  layout: {
-    docContainerConfig: {
-      innerRight: false,
-      outerLeft: false,
-      infoBar: false,
-      toolbar
-    }
-  },
-}
-univerDocCustom({
-  coreConfig,
-  uiDocsConfig
-})
+  const uiDocsConfig = {
+    container: refs,
+    layout: {
+      docContainerConfig: {
+        innerRight: false,
+        outerLeft: false,
+        infoBar: false,
+        toolbar
+      }
+    },
+  }
+  univerDocCustom({
+    coreConfig,
+    uiDocsConfig
+  })
 }
 export function initSlideNew(setting) {
   const {toolbar,refs,innerLeft = false} = setting
@@ -658,4 +726,150 @@ export function stopImmediatePropagation(container) {
   container && container.addEventListener('compositionend', (e) => {
       e.stopImmediatePropagation()
   });
+}
+
+
+// 协同
+
+function newDocs(url, params, cb) {
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  }).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(response.statusText);
+      }
+    })
+    .then(document => {
+      // 处理获取到的文档信息
+      console.log(document);
+      cb && cb(document)
+    })
+    .catch(error => {
+      console.error(error);
+      cb(null)
+    }); 
+
+}
+
+
+function openDocs(id,cb) {
+  // 定义请求参数
+      const data = new FormData();
+      data.append('id', id);
+
+      // 创建 XMLHttpRequest 对象
+      const xhr = new XMLHttpRequest();
+
+      // 监听请求完成事件
+      xhr.onload = function() {
+      if (xhr.status === 200) {
+          const document = JSON.parse(xhr.responseText);
+          // 处理获取到的文档信息
+          console.log(document);
+          cb && cb(document)
+      } else {
+          console.error(xhr.statusText);
+      }
+      };
+
+      // 发送 POST 请求
+      xhr.open('POST', 'http://'+ipAddress+'/open', true);
+      xhr.send(data);
+
+}
+function updateDocs(id,config,cb) {
+  // 定义请求参数
+      const data = new FormData();
+      data.append('id', id);
+      data.append('config', JSON.stringify(config));
+
+      // 创建 XMLHttpRequest 对象
+      const xhr = new XMLHttpRequest();
+
+      // 监听请求完成事件
+      xhr.onload = function() {
+      if (xhr.status === 200) {
+          const document = JSON.parse(xhr.responseText);
+          // 处理获取到的文档信息
+          console.log(document);
+          cb && cb(document)
+      } else {
+          console.error(xhr.statusText);
+      }
+      };
+
+      // 发送 POST 请求
+      xhr.open('POST', 'http://'+ipAddress+'/update', true);
+      xhr.send(data);
+
+}
+
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+if (!navigator.clipboard) {
+  fallbackCopyTextToClipboard(text);
+  return;
+}
+navigator.clipboard.writeText(text).then(function() {
+  console.log('Async: Copying to clipboard was successful!');
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
+}
+
+export function getUniverId(id) {
+  let cacheUniverId = localStorage.getItem('cacheUniverId');
+
+  if(cacheUniverId && cacheUniverId !== '{}'){
+    cacheUniverId = JSON.parse(cacheUniverId)
+    return cacheUniverId[id]
+  }
+
+  return null
+  
+}
+export function setUniverId(id,univerId) {
+
+  let cacheUniverId = localStorage.getItem('cacheUniverId');
+
+  if(!cacheUniverId){
+    cacheUniverId = '{}'
+  }
+
+
+  cacheUniverId = JSON.parse(cacheUniverId)
+  cacheUniverId[id] = univerId
+
+  cacheUniverId = JSON.stringify(cacheUniverId)
+
+  localStorage.setItem('cacheUniverId',cacheUniverId);
+  
 }

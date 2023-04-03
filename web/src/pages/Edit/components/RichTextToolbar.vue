@@ -175,9 +175,10 @@
 import {fontFamilyList, fontSizeList} from '@/config'
 import Color from './Color'
 import {ComponentFactory} from "simple-mind-map";
-import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData, execCommandPaste} from '@/utils'
+import {makeid, initUniverNew, stopImmediatePropagation, readExcelCopyData, execCommandPaste, getUniverId, setUniverId, urlCollbaration} from '@/utils'
 
 const cache = {};
+
 ComponentFactory.register.set('demo1', function (id, obj) {
   console.log(id)
   if (cache[id]) {
@@ -204,10 +205,19 @@ ComponentFactory.register.set('demo1', function (id, obj) {
 
     stopImmediatePropagation(container)
 
-    const univerSheet = initUniverNew(demo, {
+    let  univerSheet = null
+    let univerId = null
+     initUniverNew(demo, {
       toolbar: false,
-      refs: container
-    })
+      refs: container,
+      univerId: getUniverId(id),
+      success: (universheet)=>{
+        univerSheet = universheet
+        univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+
+        setUniverId(id,univerId)
+      }
+    },)
     // initUniver(demo, {
     //   toolBar: false,
     //   refs: container
@@ -217,8 +227,11 @@ ComponentFactory.register.set('demo1', function (id, obj) {
     const btnFullscreen = container.querySelector('.btn-fullscreen');
     const selFullscreen = container.querySelector('.select-fullscreen');
     selFullscreen.addEventListener('click', () => {
-      const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-      execCommandPaste(univerId);
+      // const univerId = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
+
+      // obj.univerId = univerId
+      const url = urlCollbaration + '?id='+univerId;
+      execCommandPaste(url);
       this.$notify.info({
         title: this.$t('edit.newFeatureNoticeTitle'),
         message: this.$t('edit.copySuccess'),
@@ -839,7 +852,7 @@ export default {
     univerDemo6() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
       this.mindMap.richText.cancelEditText();
-      activeNode.setComponent('demo6');
+      activeNode.setComponent('demo6',{});
     },
     univerDemo7() {
       const activeNode = this.mindMap.renderer.activeNodeList[0];
