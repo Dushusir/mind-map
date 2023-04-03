@@ -450,6 +450,9 @@ const config = {
           height: 20,
           hidden: 0,
       },
+      rowData,
+      columnData,
+      mergeData
     }
   }
 }
@@ -502,7 +505,6 @@ newDocs('http://'+ipAddress+'/new',univer_config,(json)=>{
       cb && cb(universheet)
     })
   }
-  
 })
 
 
