@@ -756,7 +756,7 @@ class Node {
       }
       this.active(e)
       this.mindMap.emit('node_contextmenu', e, this)
-    })
+    });
   }
 
   //  激活节点
