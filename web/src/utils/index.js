@@ -520,7 +520,7 @@ if(univerId){
 
     cb && cb(universheet)
 
-    
+
 
     // const ids = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
     // console.info('ids===',ids)
@@ -539,7 +539,7 @@ newDocs('http://'+ipAddress+'/new',config,(json)=>{
       uiSheetsConfig,
       baseSheetsConfig
     })
-  
+
     cb && cb(universheet)
 
     return
@@ -558,14 +558,14 @@ newDocs('http://'+ipAddress+'/new',config,(json)=>{
       uiSheetsConfig,
       baseSheetsConfig
     })
-  
+
     cb && cb(universheet)
 
     const universheetconfig = universheet.getWorkBook().getConfig()
 
     updateDocs(id,universheetconfig)
   }
-  
+
 })
 
 }
@@ -690,6 +690,10 @@ export function stopImmediatePropagation(container) {
   container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
   });
+  container && container.addEventListener('dblclick', (e) => {
+     e.stopPropagation();
+    e.stopImmediatePropagation()
+  });
   container && container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
   });
@@ -753,7 +757,7 @@ function newDocs(url, params, cb) {
     .catch(error => {
       console.error(error);
       cb(null)
-    }); 
+    });
 
 }
 
@@ -813,7 +817,7 @@ function updateDocs(id,config,cb) {
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
-  
+
   // Avoid scrolling to bottom
   textArea.style.top = "0";
   textArea.style.left = "0";
@@ -854,7 +858,7 @@ export function getUniverId(id) {
   }
 
   return null
-  
+
 }
 export function setUniverId(id,univerId) {
 
@@ -871,5 +875,5 @@ export function setUniverId(id,univerId) {
   cacheUniverId = JSON.stringify(cacheUniverId)
 
   localStorage.setItem('cacheUniverId',cacheUniverId);
-  
+
 }

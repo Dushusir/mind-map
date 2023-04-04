@@ -247,7 +247,7 @@ ComponentFactory.register.set('demo1', function (id, obj) {
     btnFullscreen.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       Vue.prototype.$bus.$emit('openUniver', demo, univerid)
-    })
+    });
   }, 100);
   return cache[id] = div;
 });
