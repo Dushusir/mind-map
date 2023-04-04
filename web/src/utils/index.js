@@ -50,7 +50,7 @@ export const fileToBuffer = file => {
 
 const ipAddress = '47.100.177.253:8500'
 export const urlCollbaration = 'http://luckysheet.lashuju.com/univer/'
-const config = {"type":"sheet","template":"DEMO1"}
+const univer_config = {"type":"sheet","template":"DEMO1"}
 
 export function makeid(length) {
   var result           = '';
@@ -140,7 +140,7 @@ const config = {
   id: makeid(6),
   styles: null,
   namedRanges: null,
-  sheetOrder: [],
+  sheetOrder: ['sheet-01'],
   sheets: {
     'sheet-01': {
       type: 0,
@@ -208,7 +208,7 @@ const sheetConfig = {
 const coreConfig = UniverCore.Tools.deepClone(demoInfo[demo])
 
 coreConfig.id = makeid(6)
-coreConfig.sheetOrder = []
+coreConfig.sheetOrder = ['sheet-01']
 univerSheetCustom({
   coreConfig,
   baseSheetsConfig: sheetConfig
@@ -285,9 +285,20 @@ function refresh(params) {
 export function initUniverNew(content,setting) {
 
   refresh()
-  if(content.indexOf('<table') > -1 && content.indexOf('<td') > -1){
+
+  // paste history
+  if(setting.univerId){
+    return initSheetByDemoNew(content, setting)
+  }
+  else if(content.indexOf('<table') > -1 && content.indexOf('<td') > -1){
     setting.isPasteSheet = true
     return initSheetNew(content, setting)
+  }
+  // handle http://luckysheet.lashuju.com/univer/?id=nxt0kDHPz3
+  else if(content.indexOf('luckysheet.lashuju.com/univer/?id=') !== -1){
+    const univerId = content.split('?id=')[1];
+    setting.univerId = univerId
+    return initSheetByDemoNew(content, setting)
   }
   switch (content) {
     case 'sheet':
@@ -311,7 +322,7 @@ export function initUniverNew(content,setting) {
 }
 
 export function initSheetNew(tableHTML,setting) {
-  const {toolbar,refs,isPasteSheet} = setting
+  const {toolbar,refs,isPasteSheet,univerId,success: cb} = setting
 let cellData = {}
 let mergeData = {}
 let rowData = []
@@ -412,7 +423,7 @@ const config = {
   id: makeid(6),
   styles: null,
   namedRanges: null,
-  sheetOrder: [],
+  sheetOrder: ['sheet-01'],
   sheets: {
     'sheet-01': {
       type: 0,
@@ -420,7 +431,28 @@ const config = {
       name: 'sheet1',
       // columnCount,
       status: 1,
-      cellData
+      cellData,
+      freezeColumn: 1,
+      rowCount: 1000,
+      columnCount: 20,
+      freezeRow: 1,
+      zoomRatio: 1,
+      scrollTop: 200,
+      scrollLeft: 100,
+      defaultColumnWidth: 93,
+      defaultRowHeight: 27,
+      showGridlines: 1,
+      rowTitle: {
+        width: 46,
+          hidden: 0,
+      },
+      columnTitle: {
+          height: 20,
+          hidden: 0,
+      },
+      rowData,
+      columnData,
+      mergeData
     }
   }
 }
@@ -429,21 +461,100 @@ if(isPasteSheet){
   config.sheets['sheet-01'].mergeData = mergeData;
   config.sheets['sheet-01'].rowData = rowData;
   config.sheets['sheet-01'].columnData = columnData;
+  config.sheets['sheet-01'].rowCount = 1000
+  config.sheets['sheet-01'].columnCount = 20
 }
 
 const coreConfig = Object.assign({}, DEFAULT_WORKBOOK_DATA, config)
 
 // 协同
+newDocs('http://'+ipAddress+'/new',univer_config,(json)=>{
 
-univerSheetCustom({
-  coreConfig,
-  uiSheetsConfig,
-  baseSheetsConfig
+  // offline
+  if(json == null){
+    const universheet = univerSheetCustom({
+      coreConfig,
+      uiSheetsConfig,
+      baseSheetsConfig
+    })
+  
+    cb && cb(universheet)
+
+    return
+  }
+
+
+  const id = json.id;
+  const config = json.config;
+
+  if(config === 'default'){
+
+    updateDocs(id,coreConfig,()=>{
+      const universheet = univerSheetCustom({
+        univerConfig:{
+            id
+        },
+        coreConfig,
+        uiSheetsConfig,
+        baseSheetsConfig,
+        collaborationConfig:{
+          url: `${'ws://'+ipAddress+'/ws/'}${id}`
+      }
+      })
+    
+      cb && cb(universheet)
+    })
+  }
 })
+
+
+// univerSheetCustom({
+//   coreConfig,
+//   uiSheetsConfig,
+//   baseSheetsConfig
+// })
 }
 export function initSheetByDemoNew(demo,setting) {
   const {toolbar,refs,univerId,success: cb} = setting
 const { univerSheetCustom, CommonPluginData, UniverCore } = UniverPreactTs
+
+const uiSheetsConfig = {
+  container: refs,
+  layout: {
+    sheetContainerConfig: {
+      infoBar: false,
+      formulaBar: false,
+      toolbar,
+      sheetBar: false,
+      countBar: false,
+      rightMenu: false
+    }
+  }
+}
+
+if(univerId){
+  openDocs(univerId,(json)=>{
+    const universheetconfig = json.config;
+    const id = json.id;
+
+    const universheet = univerSheetCustom({
+        univerConfig:{
+            id
+        },
+        coreConfig:JSON.parse(universheetconfig),
+        uiSheetsConfig,
+        collaborationConfig:{
+            url: `${'ws://'+ipAddress+'/ws/'}${id}`
+        }
+    });
+
+    cb && cb(universheet)
+
+})
+
+return
+}
+
 const {
   DEFAULT_WORKBOOK_DATA_DEMO1,
   DEFAULT_WORKBOOK_DATA_DEMO2,
@@ -465,19 +576,7 @@ const demoInfo = {
   DEMO7: DEFAULT_WORKBOOK_DATA_DEMO7,
   DEMO8: DEFAULT_WORKBOOK_DATA_DEMO8,
 }
-const uiSheetsConfig = {
-  container: refs,
-  layout: {
-    sheetContainerConfig: {
-      infoBar: false,
-      formulaBar: false,
-      toolbar,
-      sheetBar: false,
-      countBar: false,
-      rightMenu: false
-    }
-  }
-}
+
 const baseSheetsConfig = {
   selections: {
     'sheet-01': [
@@ -502,35 +601,8 @@ const coreConfig = UniverCore.Tools.deepClone(demoInfo[demo])
 coreConfig.id = makeid(6)
 coreConfig.sheetOrder = []
 
-if(univerId){
-  openDocs(univerId,(json)=>{
-    const universheetconfig = json.config;
-    const id = json.id;
 
-    const universheet = univerSheetCustom({
-        univerConfig:{
-            id
-        },
-        coreConfig:JSON.parse(universheetconfig),
-        uiSheetsConfig,
-        collaborationConfig:{
-            url: `${'ws://'+ipAddress+'/ws/'}${id}`
-        }
-    });
-
-    cb && cb(universheet)
-
-
-
-    // const ids = univerSheet.getWorkBook().getContext().getUniver().getGlobalContext().getUniverId();
-    // console.info('ids===',ids)
-
-
-})
-
-return
-}
-newDocs('http://'+ipAddress+'/new',config,(json)=>{
+newDocs('http://'+ipAddress+'/new',univer_config,(json)=>{
 
   // offline
   if(json == null){
@@ -539,7 +611,7 @@ newDocs('http://'+ipAddress+'/new',config,(json)=>{
       uiSheetsConfig,
       baseSheetsConfig
     })
-
+  
     cb && cb(universheet)
 
     return
@@ -550,22 +622,24 @@ newDocs('http://'+ipAddress+'/new',config,(json)=>{
   const config = json.config;
 
   if(config === 'default'){
-    const universheet = univerSheetCustom({
-      univerConfig:{
-          id
-      },
-      coreConfig,
-      uiSheetsConfig,
-      baseSheetsConfig
+
+    updateDocs(id,coreConfig,()=>{
+      const universheet = univerSheetCustom({
+        univerConfig:{
+            id
+        },
+        coreConfig,
+        uiSheetsConfig,
+        baseSheetsConfig,
+        collaborationConfig:{
+          url: `${'ws://'+ipAddress+'/ws/'}${id}`
+      }
+      })
+    
+      cb && cb(universheet)
     })
-
-    cb && cb(universheet)
-
-    const universheetconfig = universheet.getWorkBook().getConfig()
-
-    updateDocs(id,universheetconfig)
   }
-
+  
 })
 
 }
@@ -690,10 +764,6 @@ export function stopImmediatePropagation(container) {
   container && container.addEventListener('wheel', (e) => {
       e.stopImmediatePropagation()
   });
-  container && container.addEventListener('dblclick', (e) => {
-     e.stopPropagation();
-    e.stopImmediatePropagation()
-  });
   container && container.addEventListener('click', (e) => {
       e.stopImmediatePropagation()
   });
@@ -757,7 +827,7 @@ function newDocs(url, params, cb) {
     .catch(error => {
       console.error(error);
       cb(null)
-    });
+    }); 
 
 }
 
@@ -817,7 +887,7 @@ function updateDocs(id,config,cb) {
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
-
+  
   // Avoid scrolling to bottom
   textArea.style.top = "0";
   textArea.style.left = "0";
@@ -858,7 +928,7 @@ export function getUniverId(id) {
   }
 
   return null
-
+  
 }
 export function setUniverId(id,univerId) {
 
@@ -875,5 +945,5 @@ export function setUniverId(id,univerId) {
   cacheUniverId = JSON.stringify(cacheUniverId)
 
   localStorage.setItem('cacheUniverId',cacheUniverId);
-
+  
 }
