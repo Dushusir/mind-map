@@ -10,7 +10,7 @@
     padding: 4px;
     border-radius: 4px;
 }
-.btn-fullscreen:hover{
+.btn-fullscreen:hover,.select-fullscreen:hover{
     background: var(--gray-4);
     cursor: pointer;
 }
@@ -20,6 +20,10 @@
     top: 0;
     right: 30px;
     z-index: 9;
+
+    background: var(--gray-5);
+    padding: 3px 4px 0 4px;
+    border-radius: 4px;
 }
 
 .univer-content-inner-right-container > div{

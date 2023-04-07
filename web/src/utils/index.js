@@ -663,10 +663,17 @@ export function initDocNew(setting) {
       }
     },
   }
-  univerDocCustom({
+  const univerdoc = univerDocCustom({
     coreConfig,
     uiDocsConfig
   })
+
+  window.addEventListener('resize', function (event) {
+    console.log('resize doc')
+    univerdoc._context
+      .getPluginManager()
+      .getRequirePluginByName('document').getDocsView().scrollToCenter();
+  }, true);
 }
 export function initSlideNew(setting) {
   const {toolbar,refs,innerLeft = false} = setting
@@ -693,10 +700,11 @@ const universlide = univerSlideCustom({
   uiSlidesConfig
 })
 
-setTimeout(() => {
-
+window.addEventListener('resize', function (event) {
+  console.log('resize doc')
   universlide._context.getPluginManager().getPluginByName('slide').getCanvasView().scrollToCenter()
-}, 0);
+}, true);
+
 }
 
 export function execCommandPaste(text) {
